@@ -35,9 +35,9 @@
       </NuxtLink>
     </v-card>
   </v-container>
-  <footerLayout />
+
 </template>
 
 <script setup>
-import footerLayout from "../layouts/footerLayout.vue";
+
 </script>

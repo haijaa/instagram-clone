@@ -18,10 +18,10 @@
 
       <v-card-subtitle>
         <v-col class="d-flex flex-column w-100">
-          <v-text-field label="Mobile Number or Email" />
-          <v-text-field type="text" label="Full Name" />
-          <v-text-field type="text" label="Username" />
-          <v-text-field type="Password" label="Password" />
+          <v-text-field label="Mobile Number or Email (optional)" />
+          <v-text-field type="text" label="Full Name *" v-model="userData.fullname"/>
+          <v-text-field type="text" label="Username *" v-model="userData.username"/>
+          <v-text-field type="Password" label="Password *" v-model="userData.password"/>
         </v-col>
       </v-card-subtitle>
       <v-container class="d-flex flex-justify-center align-center flex-column">
@@ -38,7 +38,7 @@
             similar technology in our Cookies Policy
           </v-card-text>
         </v-col>
-        <v-btn class="w-100" color="primary"> Next </v-btn>
+        <v-btn class="w-100" color="primary" @submit.prevent="submitAccount()"> Create account </v-btn>
         <v-card-text>
           You can also report content you believe is unlawful in your country
           without logging in.
@@ -68,9 +68,27 @@
       </v-container>
     </v-container>
   </v-container>
-  <footerLayout />
+
 </template>
 
 <script setup>
-import footerLayout from "../layouts/footerLayout.vue";
+
+const userData = reactive({
+  fullname: '',
+  username: '',
+  password: ''
+})
+
+const submitAccount = async () => {
+  const { data: responseData } = await useFetch('/api/userDatabase', {
+    method: 'post',
+    body: {
+      username: userData.value.username,
+      fullname: userData.value.fullname,
+      password: userData.value.password
+    }
+  })
+  console.log(responseData.value)
+}
+
 </script>

@@ -2,17 +2,22 @@ import "@mdi/font/css/materialdesignicons.css";
 
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
 
 export default defineNuxtPlugin((app) => {
   const vuetify = createVuetify({
-    breakpoint: {
+    components,
+    directives,
+    display: {
+      mobileBreakpoint: "sm",
       thresholds: {
-        xs: 340,
-        sm: 540,
-        md: 800,
-        lg: 1280,
+        xs: 0,
+        sm: 340,
+        md: 540,
+        lg: 800,
+        xl: 1280,
       },
-      scrollBarWidth: 24,
     },
   });
   app.vueApp.use(vuetify);

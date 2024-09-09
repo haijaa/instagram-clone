@@ -1,9 +1,10 @@
 <template>
-  <headerLoggedIn />
-  <FooterLayout />
+  <NuxtLayout>
+  <PostLandingpage />
+  
+  </NuxtLayout>
 </template>
 
 <script setup>
-import FooterLayout from "~/layouts/footerLayout.vue";
-import headerLoggedIn from "~/layouts/headerLoggedIn.vue";
+
 </script>

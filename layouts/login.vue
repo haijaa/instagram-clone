@@ -19,8 +19,9 @@
             label="Password"
             v-model="state.password"
           />
+          <v-card-text v-if="loginAttempted && !state.userName" style="color: red;">{{ errorMessage }}</v-card-text>
           <v-card-text>
-            <v-btn @click="logInButton()" color="primary" class="w-100">
+            <v-btn @click="logInButton()" color="primary" class="w-100" >
               Log in
             </v-btn>
           </v-card-text>
@@ -70,22 +71,27 @@
       </v-container>
     </v-container>
   </v-container>
-  <footerLayout />
+
 </template>
 
 <script setup>
-import footerLayout from "./footerLayout.vue";
+
+const loginAttempted = ref(false);
+const errorMessage = 'You need to enter both username and password'
+
 
 const state = reactive({
   userName: "",
   passWord: "",
 });
 
+
 function logInButton() {
   if (!state.userName) {
-    return alert("You need to enter a username");
-  } else {
+  loginAttempted.value = true;
+} else
     return navigateTo("/landingpage");
   }
-}
+
+
 </script>

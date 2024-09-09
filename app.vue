@@ -1,7 +1,12 @@
 <template>
-  <NuxtLayout>
-    <NuxtPage></NuxtPage>
+<NuxtLayout>
+  <Header />
+    <NuxtPage />
   </NuxtLayout>
+  <FooterLayout />
 </template>
 
-<script setup></script>
+<script setup>
+
+import FooterLayout from './layouts/FooterLayout.vue';
+</script>
