@@ -1,11 +1,8 @@
 <template>
-  <NuxtLayout class="layouts">
+  <NuxtLayout>
     <NuxtPage />
     <Login />
   </NuxtLayout>
 </template>
 
-<script setup>
-import Login from '~/layouts/Login.vue';
-
-</script>
+<script setup></script>

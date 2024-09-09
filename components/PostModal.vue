@@ -1,21 +1,19 @@
 <template>
-<v-dialog max-width="500" >
+  <v-dialog max-width="500">
     <template v-slot:activator="{ props: activatorProps }">
-      <v-btn
-        v-bind="activatorProps"
-        color="surface-variant"
-        variant="text"
-      ><v-icon icon="mdi-plus" size="40"></v-icon></v-btn>
+      <v-btn v-bind="activatorProps" color="surface-variant" variant="text"
+        ><v-icon icon="mdi-plus" size="40"></v-icon
+      ></v-btn>
     </template>
-  
+
     <template v-slot:default="{ isActive }">
       <v-card title="POST">
         <v-container class="d-flex justify-center align-center flex-column">
-            <v-text-field class="w-50" label="User"/>
-            <v-text-field class="w-50" label="Caption" />
-            <v-container class="w-100 h-100 d-flex justify-center align-center">
-                <v-icon icon="mdi-paperclip" size="100" />
-                </v-container>
+          <v-text-field class="w-50" label="User" />
+          <v-text-field class="w-50" label="Caption" />
+          <v-container class="w-100 h-100 d-flex justify-center align-center">
+            <v-icon icon="mdi-paperclip" size="100" />
+          </v-container>
         </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -25,18 +23,14 @@
             variant="elevated"
             color="error"
           ></v-btn>
-          <v-btn 
-          text="POST"
-          variant="elevated"
-          color="primary"
-          />
+          <v-btn text="POST" variant="elevated" color="primary" />
         </v-card-actions>
       </v-card>
     </template>
   </v-dialog>
-  </template>
+</template>
 
 <script setup>
-const data = usePost()
-console.log(data.user)
+const data = usePost();
+console.log(data.user);
 </script>

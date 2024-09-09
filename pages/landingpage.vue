@@ -1,10 +1,7 @@
 <template>
   <NuxtLayout>
-  <PostLandingpage />
-  
+    <PostLandingpage />
   </NuxtLayout>
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>

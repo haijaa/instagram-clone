@@ -18,10 +18,15 @@
             type="password"
             label="Password"
             v-model="state.password"
+            @keyup.enter="logInButton"
           />
-          <v-card-text v-if="loginAttempted && !state.userName" style="color: red;">{{ errorMessage }}</v-card-text>
+          <v-card-text
+            v-if="loginAttempted && !state.userName"
+            style="color: red"
+            >{{ errorMessage }}</v-card-text
+          >
           <v-card-text>
-            <v-btn @click="logInButton()" color="primary" class="w-100" >
+            <v-btn @click="logInButton()" color="primary" class="w-100">
               Log in
             </v-btn>
           </v-card-text>
@@ -71,27 +76,20 @@
       </v-container>
     </v-container>
   </v-container>
-
 </template>
 
 <script setup>
-
 const loginAttempted = ref(false);
-const errorMessage = 'You need to enter both username and password'
-
+const errorMessage = "You need to enter both username and password";
 
 const state = reactive({
   userName: "",
   passWord: "",
 });
 
-
 function logInButton() {
   if (!state.userName) {
-  loginAttempted.value = true;
-} else
-    return navigateTo("/landingpage");
-  }
-
-
+    loginAttempted.value = true;
+  } else return navigateTo("/landingpage");
+}
 </script>

@@ -1,12 +1,13 @@
 <template>
-<NuxtLayout>
-  <Header />
+  <NuxtLayout>
+    <Header />
     <NuxtPage />
   </NuxtLayout>
-  <FooterLayout />
+  <Footer />
 </template>
 
 <script setup>
-
-import FooterLayout from './layouts/FooterLayout.vue';
+useHead({
+  title: "Instagram",
+});
 </script>
