@@ -12,21 +12,19 @@
         <v-col class="d-flex flex-column w-100">
           <v-text-field
             label="Phone number, username or email"
-            v-model="state.userName"
+            v-model="sharedState.userName"
           />
           <v-text-field
             type="password"
             label="Password"
-            v-model="state.password"
-            @keyup.enter="logInButton"
+            v-model="sharedState.password"
+            @keyup.enter="doesUserExist()"
           />
-          <v-card-text
-            v-if="loginAttempted && !state.userName"
-            style="color: red"
-            >{{ errorMessage }}</v-card-text
-          >
+          <v-card-text v-if="wrongUser" style="color: red">{{
+            errorMessage
+          }}</v-card-text>
           <v-card-text>
-            <v-btn @click="logInButton()" color="primary" class="w-100">
+            <v-btn @click="doesUserExist()" color="primary" class="w-100">
               Log in
             </v-btn>
           </v-card-text>
@@ -79,17 +77,25 @@
 </template>
 
 <script setup>
-const loginAttempted = ref(false);
-const errorMessage = "You need to enter both username and password";
+import { useUserDatabase } from "../composables/userDatabase";
+const sharedState = inject("sharedState");
 
-const state = reactive({
-  userName: "",
-  passWord: "",
-});
+const wrongUser = ref(false);
+const errorMessage = "Wrong username or password";
+const getUsers = useUserDatabase();
 
-function logInButton() {
-  if (!state.userName) {
-    loginAttempted.value = true;
-  } else return navigateTo("/landingpage");
-}
+const doesUserExist = () => {
+  const user = getUsers.users.find(
+    (user) =>
+      user.username === sharedState.userName &&
+      user.password === sharedState.password
+  );
+  if (user) {
+    console.log("User exists and password matches");
+    navigateTo("/landingpage");
+  } else {
+    console.log("User does not exist or missmatch credentials");
+    wrongUser.value = true;
+  }
+};
 </script>

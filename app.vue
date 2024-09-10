@@ -7,6 +7,13 @@
 </template>
 
 <script setup>
+const state = reactive({
+  userName: "",
+  passWord: "",
+});
+
+provide("sharedState", state);
+
 useHead({
   title: "Instagram",
 });

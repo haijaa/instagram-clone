@@ -14,7 +14,7 @@
     </v-container>
     <v-col v-if="$route.path === '/landingpage'">
       <v-card-title class="font-weight-bold">
-        {{ userData.username }}
+        {{ sharedState.userName }}
       </v-card-title>
       <NuxtLink :to="'/'">
         <v-card-subtitle class="font-weight-thin"> Log out </v-card-subtitle>
@@ -24,6 +24,8 @@
 </template>
 
 <script setup>
+const sharedState = inject("sharedState");
+
 let userData = reactive({
   fullname: "",
   username: "",

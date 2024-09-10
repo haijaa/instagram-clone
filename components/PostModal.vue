@@ -9,7 +9,7 @@
     <template v-slot:default="{ isActive }">
       <v-card title="POST">
         <v-container class="d-flex justify-center align-center flex-column">
-          <v-text-field class="w-50" label="User" />
+          {{ sharedState.userName }}
           <v-text-field class="w-50" label="Caption" />
           <v-container class="w-100 h-100 d-flex justify-center align-center">
             <v-icon icon="mdi-paperclip" size="100" />
@@ -31,6 +31,5 @@
 </template>
 
 <script setup>
-const data = usePost();
-console.log(data.user);
+const sharedState = inject("sharedState");
 </script>

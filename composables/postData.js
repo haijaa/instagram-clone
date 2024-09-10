@@ -3,7 +3,7 @@ import postPicture from "../assets/images/picture-post.png";
 const postData = {
   users: [
     {
-      id: 1, // User ID
+      id: 1,
       user: "antkarl",
       posts: [
         {
@@ -24,7 +24,7 @@ const postData = {
       ],
     },
     {
-      id: 2, // User ID
+      id: 2,
       user: "fridawikman",
       posts: [
         {
@@ -35,7 +35,7 @@ const postData = {
       ],
     },
     {
-      id: 3, // User ID
+      id: 3,
       user: "manswikman",
       posts: [
         {
@@ -46,7 +46,7 @@ const postData = {
       ],
     },
     {
-      id: 4, // User ID
+      id: 4,
       user: "qupex",
       posts: [
         {
@@ -57,7 +57,7 @@ const postData = {
       ],
     },
     {
-      id: 5, // User ID
+      id: 5,
       user: "livskrafter",
       posts: [
         {
@@ -68,7 +68,7 @@ const postData = {
       ],
     },
     {
-      id: 6, // User ID
+      id: 6,
       user: "memezar",
       posts: [
         {
@@ -79,7 +79,7 @@ const postData = {
       ],
     },
     {
-      id: 7, // User ID
+      id: 7,
       user: "9gag",
       posts: [
         {

@@ -50,8 +50,10 @@
             similar technology in our Cookies Policy
           </v-card-text>
         </v-col>
-        <NuxtLink :to="'/landingpage'">
-          <v-btn class="w-100" color="primary"> Create account </v-btn>
+        <NuxtLink>
+          <v-btn class="w-100" color="primary" @click="postAccount()">
+            Create account
+          </v-btn>
         </NuxtLink>
         <v-card-text>
           You can also report content you believe is unlawful in your country
@@ -90,4 +92,16 @@ const userData = reactive({
   username: "",
   password: "",
 });
+
+const postAccount = async () => {
+  const { data: responseData } = await useFetch("/api/userDatabase", {
+    method: "POST",
+    body: {
+      fullname: userData.fullname.value,
+      username: userData.username.value,
+      password: userData.password.value,
+    },
+  });
+  console.log(responseData.value);
+};
 </script>

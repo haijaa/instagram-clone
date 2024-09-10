@@ -57,7 +57,7 @@ import { usePost } from "../composables/postData";
 import { reactive } from "vue";
 
 const search = ref(false);
-const errorMessage = "No user by that name";
+const errorMessage = "No user by that name, try another";
 
 const posts = usePost();
 const state = reactive({
