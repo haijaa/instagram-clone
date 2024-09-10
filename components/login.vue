@@ -13,6 +13,7 @@
           <v-text-field
             label="Phone number, username or email"
             v-model="sharedState.userName"
+            @input="wrongUser = false"
           />
           <v-text-field
             type="password"
@@ -93,6 +94,7 @@ const doesUserExist = () => {
   if (user) {
     console.log("User exists and password matches");
     navigateTo("/landingpage");
+    sharedState.password = "";
   } else {
     console.log("User does not exist or missmatch credentials");
     wrongUser.value = true;

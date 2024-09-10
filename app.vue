@@ -7,6 +7,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: ["auth.js", "history"],
+});
+
 const state = reactive({
   userName: "",
   passWord: "",

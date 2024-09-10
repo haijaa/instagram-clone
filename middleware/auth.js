@@ -1,9 +1,9 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-  if (to.params.route === "/landingpage") {
+  const sharedState = inject("sharedState");
+  if (to.params.route === "/landingpage" && !sharedState.userName) {
     return abortNavigation(
       createError({
-        status: 404,
-        message: "Can't log in without username and password",
+        message: "Log in to view this page.",
       })
     );
   }
