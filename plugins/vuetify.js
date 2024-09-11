@@ -19,6 +19,9 @@ export default defineNuxtPlugin((app) => {
         xl: 1280,
       },
     },
+    theme: {
+      defaultTheme: "light",
+    },
   });
   app.vueApp.use(vuetify);
 });

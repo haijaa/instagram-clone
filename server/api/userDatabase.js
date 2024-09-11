@@ -45,5 +45,6 @@ export default defineEventHandler(async (event) => {
     }
   } else if (event.method === "GET") {
     return userDatabaseLogin;
+  } else if (event.method === "DELETE") {
   }
 });

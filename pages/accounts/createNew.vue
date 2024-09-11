@@ -18,25 +18,39 @@
 
       <v-card-subtitle>
         <v-col class="d-flex flex-column w-100">
-          <v-text-field label="Mobile Number or Email (optional)" />
+          <v-text-field
+            label="Mobile Number or Email (optional)"
+            variant="underlined"
+          />
           <v-text-field
             type="text"
             label="Full Name *"
             v-model="userData.fullname"
+            variant="underlined"
           />
           <v-text-field
             type="text"
             label="Username *"
             v-model="userData.username"
+            @input="wrongUsername = false"
+            variant="underlined"
           />
           <v-text-field
             type="Password"
             label="Password *"
             v-model="userData.password"
             @keyup.enter="createUser()"
+            variant="underlined"
           />
         </v-col>
       </v-card-subtitle>
+      <v-card-text
+        v-if="wrongUsername"
+        style="color: red"
+        class="d-flex justify-center align-center"
+      >
+        {{ errorMessage }}
+      </v-card-text>
       <v-container class="d-flex flex-justify-center align-center flex-column">
         <v-col class="justify-center d-flex">
           <v-card-text class="d-flex justify-center">
@@ -88,6 +102,8 @@
 </template>
 
 <script setup>
+const wrongUsername = ref(false);
+const errorMessage = "User exist already, try again.";
 const userData = reactive({
   fullname: "",
   username: "",
@@ -97,6 +113,10 @@ const userData = reactive({
 const url = "/api/userDatabase";
 
 const createUser = async () => {
+  const response = await $fetch("/api/userDatabase");
+  const fetchedUsers = response.users.find(
+    (user) => user.username === userData.username
+  );
   const { data, error } = await $fetch(url, {
     method: "POST",
     body: {
@@ -105,13 +125,11 @@ const createUser = async () => {
       password: userData.password,
     },
   });
-  if (error) {
-    console.log("Fel :", error);
+  if (fetchedUsers.username === userData.username) {
+    console.log("Användare finns redan");
+    wrongUsername.value = true;
   } else {
-    console.log("Användare skapad:", data);
+    console.log("Användare skapad.");
   }
 };
-
-const data = await $fetch("/api/userDatabase");
-console.log(data);
 </script>

@@ -14,12 +14,14 @@
             label="Phone number, username or email"
             v-model="sharedState.userName"
             @input="wrongUser = false"
+            variant="underlined"
           />
           <v-text-field
             type="password"
             label="Password"
             v-model="sharedState.password"
             @keyup.enter="doesUserExist()"
+            variant="underlined"
           />
           <v-card-text v-if="wrongUser" style="color: red">{{
             errorMessage
@@ -85,6 +87,7 @@ const errorMessage = "Wrong username or password";
 
 const doesUserExist = async () => {
   const data = await $fetch(`/api/userDatabase`);
+  console.log(data);
   const user = data.users.find(
     (user) =>
       user.username === sharedState.userName &&
