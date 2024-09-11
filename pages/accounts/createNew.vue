@@ -94,20 +94,24 @@ const userData = reactive({
   password: "",
 });
 
+const url = "/api/userDatabase";
+
 const createUser = async () => {
-  const { data, error } = await $fetch("/api/userDatabase.js", {
+  const { data, error } = await $fetch(url, {
     method: "POST",
     body: {
-      fullname: userData.fullname.value,
-      username: userData.username.value,
-      password: userData.password.value,
+      fullname: userData.fullname,
+      username: userData.username,
+      password: userData.password,
     },
   });
-  if (error.value) {
-    message.value = "Error creating user";
+  if (error) {
+    console.log("Fel :", error);
   } else {
-    message.value = "User created successfully!";
-    console.log(data);
+    console.log("Användare skapad:", data);
   }
 };
+
+const data = await $fetch("/api/userDatabase");
+console.log(data);
 </script>
