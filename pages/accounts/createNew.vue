@@ -33,6 +33,7 @@
             type="Password"
             label="Password *"
             v-model="userData.password"
+            @keyup.enter="createUser()"
           />
         </v-col>
       </v-card-subtitle>
@@ -51,7 +52,7 @@
           </v-card-text>
         </v-col>
         <NuxtLink>
-          <v-btn class="w-100" color="primary" @click="postAccount()">
+          <v-btn class="w-100" color="primary" @click="createUser()">
             Create account
           </v-btn>
         </NuxtLink>
@@ -93,8 +94,8 @@ const userData = reactive({
   password: "",
 });
 
-const postAccount = async () => {
-  const { data: responseData } = await useFetch("/api/userDatabase", {
+const createUser = async () => {
+  const { data, error } = await $fetch("/api/userDatabase.js", {
     method: "POST",
     body: {
       fullname: userData.fullname.value,
@@ -102,6 +103,11 @@ const postAccount = async () => {
       password: userData.password.value,
     },
   });
-  console.log(responseData.value);
+  if (error.value) {
+    message.value = "Error creating user";
+  } else {
+    message.value = "User created successfully!";
+    console.log(data);
+  }
 };
 </script>

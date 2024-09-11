@@ -78,25 +78,24 @@
 </template>
 
 <script setup>
-import { useUserDatabase } from "../composables/userDatabase";
 const sharedState = inject("sharedState");
 
 const wrongUser = ref(false);
 const errorMessage = "Wrong username or password";
-const getUsers = useUserDatabase();
 
-const doesUserExist = () => {
-  const user = getUsers.users.find(
+const doesUserExist = async () => {
+  const data = await $fetch(`/api/userDatabase`);
+  const user = data.users.find(
     (user) =>
       user.username === sharedState.userName &&
       user.password === sharedState.password
   );
   if (user) {
-    console.log("User exists and password matches");
+    console.log("Hitta en användare.");
     navigateTo("/landingpage");
     sharedState.password = "";
   } else {
-    console.log("User does not exist or missmatch credentials");
+    console.log("Finns ingen sådan användare/fel lösenord");
     wrongUser.value = true;
   }
 };
