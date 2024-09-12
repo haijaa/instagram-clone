@@ -26,13 +26,4 @@ let userData = reactive({
   username: "",
   password: "",
 });
-
-const { data, error } = await useFetch("/api/userDatabase");
-console.log(data.value);
-
-if (data.value) {
-  Object.assign(userData, data.value);
-} else {
-  console.log("Detta är fel: ", error.value);
-}
 </script>

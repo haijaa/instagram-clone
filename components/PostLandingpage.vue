@@ -89,7 +89,15 @@
         <div
           v-for="singleComment in commentsOnPosts.usercomments"
           :key="singleComment.comment"
+          class="d-flex flex-row justfiy-center align-center flex-space-between w-100"
         >
+          <!--           <v-icon
+            icon="mdi-cancel"
+            v-if="singleComment.user === sharedState.userName"
+            @click="deleteComment()"
+            size="20"
+            style="color: red"
+          /> -->
           <p>
             <strong>{{ singleComment.user }}:</strong
             >{{ singleComment.comment }}
@@ -150,13 +158,13 @@ const fetchComments = async (postId) => {
     method: "GET",
     params: { postId },
   });
-
   commentsOnPosts.value = data;
 };
 
 const postComments = async (postId) => {
   await $fetch("/api/postComments", {
     method: "POST",
+    params: { postId },
     body: {
       user: sharedState.userName,
       comment: userInput.commentContent,
@@ -176,4 +184,14 @@ const isUserLoggedIn = () => {
   }
 };
 isUserLoggedIn();
+
+/* const deleteComment = async () => {
+  await $fetch("/api/postComments", {
+    method: "DELETE",
+    body: {
+      user: sharedState.userName,
+    },
+  });
+  fetchComments();
+}; */
 </script>

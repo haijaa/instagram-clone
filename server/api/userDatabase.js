@@ -4,6 +4,10 @@ let userDatabaseLogin = {
       fullname: "Anton Karlsson",
       username: "antkarl",
       password: "password123",
+      posts: "1",
+      followers: "5",
+      following: "10",
+      url: "antkarl",
     },
     {
       fullname: "Måns Wikman",

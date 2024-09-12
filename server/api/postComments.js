@@ -12,6 +12,10 @@ let commentsOnPosts = {
       user: "antkarl",
       comment: "Wow snygg bild",
     },
+    {
+      user: "fridawikman",
+      comment: "sluta skriva hej och sånt, du ska sova nu.",
+    },
   ],
 };
 
