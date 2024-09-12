@@ -14,6 +14,7 @@ definePageMeta({
 const state = reactive({
   userName: "",
   passWord: "",
+  comment: "",
 });
 
 provide("sharedState", state);

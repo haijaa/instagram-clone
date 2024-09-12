@@ -10,7 +10,7 @@
     <v-container class="d-flex flex-row-reverse">
       <v-switch
         @click="toggleTheme()"
-        :label="[theme.global.current.value.dark ? 'dark' : 'light']"
+        :label="theme.global.current.value.dark ? 'dark' : 'light'"
       />
     </v-container>
     <v-col

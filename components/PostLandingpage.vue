@@ -48,7 +48,10 @@
             <v-icon
               icon="mdi-chat-outline"
               size="25"
-              @click="commentField = true"
+              @click="
+                toggleComments();
+                fetchComments();
+              "
             />
             <v-icon icon="mdi-share-outline" size="25" />
           </div>
@@ -65,9 +68,36 @@
         </v-card-text>
       </v-container>
       <v-container v-if="commentField">
-        <strong>Comment on photo</strong>
-        <v-textarea label="Comment" class="w-100 mt-2"></v-textarea>
-        <v-btn text="comment" color="black" variant="outlined" size="small" />
+        <p>Comments:</p>
+        <div
+          v-for="singleComment in commentsOnPosts.usercomments"
+          :key="singleComment.comment"
+        >
+          <p>
+            <strong>{{ singleComment.user }}:</strong
+            >{{ singleComment.comment }}
+          </p>
+        </div>
+        <v-textarea
+          label="Comment"
+          class="w-100 mt-2"
+          v-model="userInput.commentContent"
+          @keyup.enter="postComments()"
+          v-if="!invalidUserComment"
+        />
+        <p v-if="invalidUserComment" style="color: red">
+          You need to login to comment
+        </p>
+        <v-btn
+          text="comment"
+          color="black"
+          variant="outlined"
+          size="small"
+          @click="
+            postComments();
+            userInput.commentContent = '';
+          "
+        />
       </v-container>
     </v-card>
   </v-container>
@@ -77,14 +107,44 @@
 import { usePost } from "../composables/postData";
 const showPost = ref(true);
 const commentField = ref(false);
+const invalidUserComment = ref(false);
 const post = usePost();
+const sharedState = inject("sharedState");
+let commentsOnPosts = ref([]);
+const userInput = reactive({
+  commentContent: "",
+});
 
 /* const selectedCard = (id) => {
   post.users.value = post.users.filter((user) => user.id !== id);
   console.log("Klickat ID:", id);
 }; */
 
+const toggleComments = () => {
+  commentField.value = !commentField.value;
+};
+
 const refreshPage = () => {
   location.reload();
+};
+
+const fetchComments = async () => {
+  const data = await $fetch("/api/postComments");
+  commentsOnPosts.value = data;
+};
+
+const postComments = async () => {
+  await $fetch("/api/postComments", {
+    method: "POST",
+    body: {
+      user: sharedState.userName,
+      comment: userInput.commentContent,
+    },
+  });
+  fetchComments();
+  userInput.commentContent = "";
+  if (sharedState.userName === "") {
+    invalidUserComment.value = true;
+  }
 };
 </script>
