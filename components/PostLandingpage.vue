@@ -1,6 +1,26 @@
 <template>
+  <v-dialog max-width="500" v-model="logInPrompt">
+    <v-card class="d-flex justify-center align-center">
+      <strong class="mt-10">Need to be logged in to show posts.</strong>
+      <p>Click the button below</p>
+      <v-btn
+        text="LOG IN"
+        @click="
+          navigateTo('/');
+          load;
+        "
+        variant="flat"
+        :loading="loading"
+        color="primary"
+        height="25"
+        class="mt-10 mb-10"
+        >LOG IN</v-btn
+      >
+    </v-card>
+  </v-dialog>
+
   <!-- <img src="../assets/images/leftside-menu.png" class="position-fixed" /> -->
-  <v-container class="d-flex flex-column justify-space-evenly position-fixed">
+  <v-container class="d-flex flex-column justify-space-between position-fixed">
     <v-icon
       icon="mdi-instagram"
       size="35"
@@ -10,6 +30,7 @@
 
     <Searchuser />
     <PostModal />
+    <Settings />
     <v-icon icon="mdi-like" size="35" />
   </v-container>
   <v-container
@@ -28,10 +49,6 @@
         </v-container>
 
         <v-card-text class="font-weight-bold text-h5">...</v-card-text>
-        <!-- <v-icon
-          icon="mdi-eye-remove-outline"
-          @click="selectedCard(content.id)"
-        /> -->
       </v-container>
       <v-container
         v-for="postContent in content.posts"
@@ -49,8 +66,8 @@
               icon="mdi-chat-outline"
               size="25"
               @click="
-                toggleComments();
-                fetchComments();
+                toggleComments(content.id);
+                fetchComments(content.id);
               "
             />
             <v-icon icon="mdi-share-outline" size="25" />
@@ -67,7 +84,7 @@
           {{ postContent.caption }}
         </v-card-text>
       </v-container>
-      <v-container v-if="commentField">
+      <v-container v-if="activePostId === content.id">
         <p>Comments:</p>
         <div
           v-for="singleComment in commentsOnPosts.usercomments"
@@ -82,7 +99,7 @@
           label="Comment"
           class="w-100 mt-2"
           v-model="userInput.commentContent"
-          @keyup.enter="postComments()"
+          @keyup.enter="postComments(content.id)"
           v-if="!invalidUserComment"
         />
         <p v-if="invalidUserComment" style="color: red">
@@ -94,7 +111,7 @@
           variant="outlined"
           size="small"
           @click="
-            postComments();
+            postComments(content.id);
             userInput.commentContent = '';
           "
         />
@@ -106,45 +123,57 @@
 <script setup>
 import { usePost } from "../composables/postData";
 const showPost = ref(true);
-const commentField = ref(false);
 const invalidUserComment = ref(false);
 const post = usePost();
 const sharedState = inject("sharedState");
+const activePostId = ref(null);
+const logInPrompt = ref(false);
 let commentsOnPosts = ref([]);
 const userInput = reactive({
   commentContent: "",
 });
 
-/* const selectedCard = (id) => {
-  post.users.value = post.users.filter((user) => user.id !== id);
-  console.log("Klickat ID:", id);
-}; */
-
-const toggleComments = () => {
-  commentField.value = !commentField.value;
+const toggleComments = (postId) => {
+  if (activePostId.value === postId) {
+    activePostId.value = null;
+  } else {
+    activePostId.value = postId;
+  }
 };
 
 const refreshPage = () => {
   location.reload();
 };
 
-const fetchComments = async () => {
-  const data = await $fetch("/api/postComments");
+const fetchComments = async (postId) => {
+  const data = await $fetch("/api/postComments", {
+    method: "GET",
+    params: { postId },
+  });
+
   commentsOnPosts.value = data;
 };
 
-const postComments = async () => {
+const postComments = async (postId) => {
   await $fetch("/api/postComments", {
     method: "POST",
     body: {
       user: sharedState.userName,
       comment: userInput.commentContent,
+      postId,
     },
   });
-  fetchComments();
+  fetchComments(postId);
   userInput.commentContent = "";
   if (sharedState.userName === "") {
     invalidUserComment.value = true;
   }
 };
+
+const isUserLoggedIn = () => {
+  if (sharedState.userName === "") {
+    logInPrompt.value = true;
+  }
+};
+isUserLoggedIn();
 </script>

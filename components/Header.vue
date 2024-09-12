@@ -1,20 +1,10 @@
 <template>
   <v-container class="w-100 h-25 d-flex flex-row justify-space-between">
-    <!-- <img
-      src="../assets/images/logo-login.png"
-      style="margin: 0; padding: 0"
-      @click="navigateTo('/')"
-    /> -->
     <h1 class="font-size-45">Instagram</h1>
 
-    <v-container class="d-flex flex-row-reverse">
-      <v-switch
-        @click="toggleTheme()"
-        :label="theme.global.current.value.dark ? 'dark' : 'light'"
-      />
-    </v-container>
+    <v-container class="d-flex flex-row-reverse"> </v-container>
     <v-col
-      v-if="$route.path === '/landingpage'"
+      v-if="$route.path === '/landingpage' && sharedState.userName"
       class="d-flex flex-column align-center"
     >
       <v-card-title class="font-weight-bold">
@@ -29,9 +19,6 @@
 </template>
 
 <script setup>
-import { useTheme } from "vuetify";
-const theme = useTheme();
-
 const sharedState = inject("sharedState");
 
 let userData = reactive({
@@ -39,10 +26,6 @@ let userData = reactive({
   username: "",
   password: "",
 });
-
-const toggleTheme = () => {
-  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
-};
 
 const { data, error } = await useFetch("/api/userDatabase");
 console.log(data.value);

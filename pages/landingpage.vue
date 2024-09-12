@@ -1,6 +1,5 @@
 <template>
   <NuxtLayout>
-    <NuxtLoadingIndicator />
     <PostLandingpage />
   </NuxtLayout>
 </template>

@@ -11,16 +11,6 @@ const postData = {
           picture: postPicture,
           likes: 1354,
         },
-        {
-          caption: "Hey there",
-          picture: postPicture,
-          likes: 99,
-        },
-        {
-          caption: "alot of sun here",
-          picture: postPicture,
-          likes: 2139,
-        },
       ],
     },
     {

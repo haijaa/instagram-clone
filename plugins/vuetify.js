@@ -20,7 +20,11 @@ export default defineNuxtPlugin((app) => {
       },
     },
     theme: {
-      defaultTheme: "light",
+      themes: {
+        light: {
+          background: "#949494",
+        },
+      },
     },
   });
   app.vueApp.use(vuetify);
