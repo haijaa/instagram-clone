@@ -91,15 +91,8 @@
           :key="singleComment.comment"
           class="d-flex flex-row justfiy-center align-center flex-space-between w-100"
         >
-          <!--           <v-icon
-            icon="mdi-cancel"
-            v-if="singleComment.user === sharedState.userName"
-            @click="deleteComment()"
-            size="20"
-            style="color: red"
-          /> -->
           <p>
-            <strong>{{ singleComment.user }}:</strong
+            <strong>{{ singleComment.user }}: </strong
             >{{ singleComment.comment }}
           </p>
         </div>
@@ -184,14 +177,4 @@ const isUserLoggedIn = () => {
   }
 };
 isUserLoggedIn();
-
-/* const deleteComment = async () => {
-  await $fetch("/api/postComments", {
-    method: "DELETE",
-    body: {
-      user: sharedState.userName,
-    },
-  });
-  fetchComments();
-}; */
 </script>
