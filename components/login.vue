@@ -86,6 +86,7 @@ const errorMessage = "Wrong username or password";
 
 const doesUserExist = async () => {
   const data = await $fetch(`/api/userDatabase`);
+  console.log(data);
   const user = data.users.find(
     (user) =>
       user.username === sharedState.userName &&

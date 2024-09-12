@@ -1,21 +1,20 @@
 <template>
   <v-dialog>
     <template v-slot:activator="{ props: activatorProps }">
-      <v-icon icon="mdi-cog-outline" size="35" v-bind="activatorProps" />
+      <v-icon
+        icon="mdi-share-outline"
+        size="25"
+        v-bind="activatorProps"
+        @click="fetchUsers()"
+      />
     </template>
     <template v-slot:default="{ isActive }">
       <v-container class="d-flex justify-center align-center">
         <v-card class="w-50">
-          <v-card-title> Settings </v-card-title>
-          <v-switch
-            @click="toggleTheme()"
-            :label="
-              theme.global.current.value.dark
-                ? 'Swap to lightmode'
-                : 'Swap to darkmode'
-            "
-            class="ml-5"
-          />
+          <v-card-title> Send to who? </v-card-title>
+          <v-card-subtitle v-for="link in user" :key="user.fullname">
+            {{ link.username }}
+          </v-card-subtitle>
           <v-container class="d-flex justify-end">
             <v-btn
               @click="isActive.value = false"
@@ -32,11 +31,10 @@
 </template>
 
 <script setup>
-import { useTheme } from "vuetify";
-const theme = useTheme();
-const toggleTheme = () => {
-  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
+const fetchUsers = async () => {
+  const response = await $fetch("/api/userDatabase");
+  const user = response.users.map((user) => user);
+  console.log(user);
 };
-
-
+fetchUsers();
 </script>

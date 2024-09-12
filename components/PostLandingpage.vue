@@ -70,7 +70,11 @@
                 fetchComments(content.id);
               "
             />
-            <v-icon icon="mdi-share-outline" size="25" />
+            <!-- <v-icon
+              icon="mdi-share-outline"
+              size="25"
+            /> -->
+            <ShareContent />
           </div>
           <div class="d-flex justify-end">
             <v-icon icon="mdi-content-save-outline" />
@@ -129,6 +133,7 @@ const post = usePost();
 const sharedState = inject("sharedState");
 const activePostId = ref(null);
 const logInPrompt = ref(false);
+const showShare = ref(false);
 let commentsOnPosts = ref([]);
 const userInput = reactive({
   commentContent: "",

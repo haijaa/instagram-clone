@@ -1,7 +1,3 @@
-import { inject } from "vue";
-
-const sharedState = inject("sharedState");
-
 let commentsOnPosts = {
   usercomments: [
     {
@@ -14,7 +10,7 @@ let commentsOnPosts = {
     },
     {
       user: "fridawikman",
-      comment: "sluta skriva hej och sånt, du ska sova nu.",
+      comment: "sluta skriva hej och sånt Måns, du ska sova nu.",
     },
   ],
 };

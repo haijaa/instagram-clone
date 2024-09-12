@@ -35,7 +35,12 @@ let userDatabaseLogin = {
 export default defineEventHandler(async (event) => {
   if (event.method === "POST") {
     const body = await readBody(event);
-    if (body.fullname && body.username && body.password) {
+    if (
+      body.fullname &&
+      body.username &&
+      body.password &&
+      body.username !== username
+    ) {
       userDatabaseLogin.users.push({
         fullname: body.fullname,
         username: body.username,
@@ -45,7 +50,7 @@ export default defineEventHandler(async (event) => {
         users: userDatabaseLogin.users,
       };
     } else {
-      return { error: "Invalid input" };
+      return { error: "Invalid input or duplicate username" };
     }
   } else if (event.method === "GET") {
     return userDatabaseLogin;
