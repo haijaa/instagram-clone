@@ -9,14 +9,14 @@
           <v-card-text>
             Sign up to see photos and videos from your friends.
           </v-card-text>
-          <v-btn class="w-100" color="primary">
+          <v-btn class="w-100" color="primary" v-if="!success">
             <v-icon class="mr-1">mdi-facebook</v-icon>
             Log in with Facebook
           </v-btn>
         </v-card-title>
       </v-col>
 
-      <v-card-subtitle>
+      <v-card-subtitle v-if="!success">
         <v-col class="d-flex flex-column w-100">
           <v-text-field
             label="Mobile Number or Email (optional)"
@@ -51,7 +51,16 @@
       >
         {{ errorMessage }}
       </v-card-text>
-      <v-container class="d-flex flex-justify-center align-center flex-column">
+      <v-card-text
+  
+        v-if="success"
+        style="color: green"
+        class="d-flex justify-center align-center flex-column"
+      >
+        {{ successMessage }}
+        <v-btn @click="navigateTo('/')" color="success" text="LOGIN"/>
+      </v-card-text>
+      <v-container class="d-flex flex-justify-center align-center flex-column" v-if="!success">
         <v-col class="justify-center d-flex">
           <v-card-text class="d-flex justify-center">
             People who use our service may have uploaded your contact
@@ -77,7 +86,7 @@
       </v-container>
     </v-card>
     <v-card class="w-50 mt-3">
-      <v-card-text class="d-flex flex-row justify-center">
+      <v-card-text class="d-flex flex-row justify-center" v-if="!success">
         Have an account?
         <NuxtLink :to="'/'">
           <p class="ml-2 font-weight-bold" style="color: #1867c0">Log in</p>
@@ -102,6 +111,8 @@
 </template>
 
 <script setup>
+const success = ref(false)
+const successMessage = 'Account created, return to login with the botton below.'
 const wrongUsername = ref(false);
 const errorMessage = "User exist already, try again.";
 const userData = reactive({
@@ -136,6 +147,7 @@ const createUser = async () => {
 
     console.log("Användare skapad.");
     wrongUsername.value = false; 
+    success.value = true
   } catch (error) {
     console.error("Kunde inte skapa användare:", error);
   }

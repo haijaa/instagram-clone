@@ -67,13 +67,13 @@
   size="25"
   color="red"
   v-if="likedPosts[content.id]"
-  @click="likePost(content.id)"
+  @click="likePost(content.id); postContent.likes + 1"
 />
 <v-icon
   icon="mdi-heart-outline"
   size="25"
   v-else
-  @click="likePost(content.id)"
+  @click="likePost(content.id); postContent.likes + 1"
 />
 <v-icon
               icon="mdi-chat-outline"
