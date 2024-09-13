@@ -114,22 +114,30 @@ const url = "/api/userDatabase";
 
 const createUser = async () => {
   const response = await $fetch("/api/userDatabase");
-  const fetchedUsers = response.users.find(
+  const existingUser = response.users.find(
     (user) => user.username === userData.username
   );
-  const { data, error } = await $fetch(url, {
-    method: "POST",
-    body: {
-      fullname: userData.fullname,
-      username: userData.username,
-      password: userData.password,
-    },
-  });
-  if (fetchedUsers.username === userData.username) {
+
+  if (existingUser) {
     console.log("Användare finns redan");
     wrongUsername.value = true;
-  } else {
+    return; 
+  }
+
+  try {
+    await $fetch(url, {
+      method: "POST",
+      body: {
+        fullname: userData.fullname,
+        username: userData.username,
+        password: userData.password,
+      },
+    });
+
     console.log("Användare skapad.");
+    wrongUsername.value = false; 
+  } catch (error) {
+    console.error("Kunde inte skapa användare:", error);
   }
 };
 </script>
