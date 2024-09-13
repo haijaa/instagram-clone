@@ -4,10 +4,6 @@ let userDatabaseLogin = {
       fullname: "Anton Karlsson",
       username: "antkarl",
       password: "password123",
-      posts: "1",
-      followers: "5",
-      following: "10",
-      url: "antkarl",
     },
     {
       fullname: "Måns Wikman",
@@ -35,12 +31,7 @@ let userDatabaseLogin = {
 export default defineEventHandler(async (event) => {
   if (event.method === "POST") {
     const body = await readBody(event);
-    if (
-      body.fullname &&
-      body.username &&
-      body.password &&
-      body.username !== username
-    ) {
+    if (body.fullname && body.username && body.password) {
       userDatabaseLogin.users.push({
         fullname: body.fullname,
         username: body.username,
@@ -54,6 +45,5 @@ export default defineEventHandler(async (event) => {
     }
   } else if (event.method === "GET") {
     return userDatabaseLogin;
-  } else if (event.method === "DELETE") {
   }
 });
