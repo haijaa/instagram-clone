@@ -61,8 +61,21 @@
         />
         <v-container class="d-flex justify-space-between w-100">
           <div>
-            <v-icon icon="mdi-heart-outline" size="25" />
+
             <v-icon
+  icon="mdi-heart"
+  size="25"
+  color="red"
+  v-if="likedPosts[content.id]"
+  @click="likePost(content.id)"
+/>
+<v-icon
+  icon="mdi-heart-outline"
+  size="25"
+  v-else
+  @click="likePost(content.id)"
+/>
+<v-icon
               icon="mdi-chat-outline"
               size="25"
               @click="
@@ -70,10 +83,6 @@
                 fetchComments(content.id);
               "
             />
-            <!-- <v-icon
-              icon="mdi-share-outline"
-              size="25"
-            /> -->
             <ShareContent />
           </div>
           <div class="d-flex justify-end">
@@ -127,6 +136,8 @@
 
 <script setup>
 import { usePost } from "../composables/postData";
+/* const liked = ref(false) */
+const likedPosts = reactive({});
 const showPost = ref(true);
 const invalidUserComment = ref(false);
 const post = usePost();
@@ -182,4 +193,14 @@ const isUserLoggedIn = () => {
   }
 };
 isUserLoggedIn();
+
+const likePost = (postId) => {
+  console.log(`Post ID mottagen: ${postId}`); 
+  if (!likedPosts[postId]) {
+    likedPosts[postId] = true;  
+  } else {
+    likedPosts[postId] = false; 
+  }
+  console.log(`Klickat hjärta för inlägg ${postId}. Ny status: ${likedPosts[postId]}`);
+};
 </script>
