@@ -10,7 +10,7 @@
       <v-card-title class="font-weight-bold">
         {{ sharedState.userName }}
       </v-card-title>
-      <div class="d-flex flex-row" @click="navigateTo('/')">
+      <div class="d-flex flex-row" @click="logOutButton()">
         <v-btn text="Log out" size="small" variant="plain"> </v-btn>
         <v-icon icon="mdi-logout" />
       </div>
@@ -19,11 +19,15 @@
 </template>
 
 <script setup>
+import nuxtStorage from "nuxt-storage";
 const sharedState = inject("sharedState");
+sharedState.userName = nuxtStorage.localStorage.getData("loginUsername");
 
-let userData = reactive({
-  fullname: "",
-  username: "",
-  password: "",
-});
+const logOutButton = () => {
+  navigateTo("/");
+  sharedState.userName = nuxtStorage.localStorage.setData(
+    "loginUsername",
+    null
+  );
+};
 </script>

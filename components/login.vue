@@ -80,8 +80,11 @@
 </template>
 
 <script setup>
+import nuxtStorage from "nuxt-storage";
+
 const sharedState = inject("sharedState");
 const wrongUser = ref(false);
+
 const errorMessage = "Wrong username or password";
 
 const doesUserExist = async () => {
@@ -96,6 +99,7 @@ const doesUserExist = async () => {
     console.log("Hitta en användare.");
     navigateTo("/landingpage");
     sharedState.password = "";
+    nuxtStorage.localStorage.setData("loginUsername", sharedState.userName);
   } else {
     console.log("Finns ingen sådan användare/fel lösenord");
     wrongUser.value = true;

@@ -52,15 +52,17 @@
         {{ errorMessage }}
       </v-card-text>
       <v-card-text
-  
         v-if="success"
         style="color: green"
         class="d-flex justify-center align-center flex-column"
       >
         {{ successMessage }}
-        <v-btn @click="navigateTo('/')" color="success" text="LOGIN"/>
+        <v-btn @click="navigateTo('/')" color="success" text="LOGIN" />
       </v-card-text>
-      <v-container class="d-flex flex-justify-center align-center flex-column" v-if="!success">
+      <v-container
+        class="d-flex flex-justify-center align-center flex-column"
+        v-if="!success"
+      >
         <v-col class="justify-center d-flex">
           <v-card-text class="d-flex justify-center">
             People who use our service may have uploaded your contact
@@ -111,10 +113,13 @@
 </template>
 
 <script setup>
-const success = ref(false)
-const successMessage = 'Account created, return to login with the botton below.'
+const success = ref(false);
 const wrongUsername = ref(false);
+
+const successMessage =
+  "Account created, return to login with the botton below.";
 const errorMessage = "User exist already, try again.";
+
 const userData = reactive({
   fullname: "",
   username: "",
@@ -132,7 +137,7 @@ const createUser = async () => {
   if (existingUser) {
     console.log("Användare finns redan");
     wrongUsername.value = true;
-    return; 
+    return;
   }
 
   try {
@@ -146,8 +151,8 @@ const createUser = async () => {
     });
 
     console.log("Användare skapad.");
-    wrongUsername.value = false; 
-    success.value = true
+    wrongUsername.value = false;
+    success.value = true;
   } catch (error) {
     console.error("Kunde inte skapa användare:", error);
   }

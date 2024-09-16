@@ -61,21 +61,26 @@
         />
         <v-container class="d-flex justify-space-between w-100">
           <div>
-
             <v-icon
-  icon="mdi-heart"
-  size="25"
-  color="red"
-  v-if="likedPosts[content.id]"
-  @click="likePost(content.id); postContent.likes + 1"
-/>
-<v-icon
-  icon="mdi-heart-outline"
-  size="25"
-  v-else
-  @click="likePost(content.id); postContent.likes + 1"
-/>
-<v-icon
+              icon="mdi-heart"
+              size="25"
+              color="red"
+              v-if="likedPosts[content.id]"
+              @click="
+                likePost(content.id);
+                postContent.likes + 1;
+              "
+            />
+            <v-icon
+              icon="mdi-heart-outline"
+              size="25"
+              v-else
+              @click="
+                likePost(content.id);
+                postContent.likes + 1;
+              "
+            />
+            <v-icon
               icon="mdi-chat-outline"
               size="25"
               @click="
@@ -136,16 +141,20 @@
 
 <script setup>
 import { usePost } from "../composables/postData";
-/* const liked = ref(false) */
-const likedPosts = reactive({});
+import nuxtStorage from "nuxt-storage";
+const sharedState = inject("sharedState");
+
+sharedState.userName = nuxtStorage.localStorage.getData("loginUsername");
+
+const post = usePost();
+let commentsOnPosts = ref([]);
+
 const showPost = ref(true);
 const invalidUserComment = ref(false);
-const post = usePost();
-const sharedState = inject("sharedState");
 const activePostId = ref(null);
 const logInPrompt = ref(false);
-const showShare = ref(false);
-let commentsOnPosts = ref([]);
+
+const likedPosts = reactive({});
 const userInput = reactive({
   commentContent: "",
 });
@@ -188,19 +197,21 @@ const postComments = async (postId) => {
 };
 
 const isUserLoggedIn = () => {
-  if (sharedState.userName === "") {
+  if (sharedState.userName === "" || sharedState.userName === null) {
     logInPrompt.value = true;
   }
 };
 isUserLoggedIn();
 
 const likePost = (postId) => {
-  console.log(`Post ID mottagen: ${postId}`); 
+  console.log(`Post ID mottagen: ${postId}`);
   if (!likedPosts[postId]) {
-    likedPosts[postId] = true;  
+    likedPosts[postId] = true;
   } else {
-    likedPosts[postId] = false; 
+    likedPosts[postId] = false;
   }
-  console.log(`Klickat hjärta för inlägg ${postId}. Ny status: ${likedPosts[postId]}`);
+  console.log(
+    `Klickat hjärta för inlägg ${postId}. Ny status: ${likedPosts[postId]}`
+  );
 };
 </script>
