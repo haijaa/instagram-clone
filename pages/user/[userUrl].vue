@@ -34,6 +34,10 @@
             <v-btn text="SHOW ARCHIVE" class="ml-2" />
             <v-icon icon="mdi-cog-outline" class="ml-2 mr-2" />
           </v-row>
+          <v-row v-else>
+            <v-btn text="FOLLOW" class="ml-10" />
+            <v-btn text="Message" class="ml-2" />
+          </v-row>
         </v-row>
         <v-row justify="start" class="mt-5">
           <p>{{ userFound.page.followers }} followers</p>
