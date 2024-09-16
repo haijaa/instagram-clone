@@ -26,7 +26,10 @@
       <div>
         <v-row class="align-center justify-center flex-space-evenly">
           <h1>{{ userFound.username }}</h1>
-          <v-row class="ml-15 align-center">
+          <v-row
+            class="ml-15 align-center"
+            v-if="userFound.username === sharedState.userName"
+          >
             <EditProfile />
             <v-btn text="SHOW ARCHIVE" class="ml-2" />
             <v-icon icon="mdi-cog-outline" class="ml-2 mr-2" />
@@ -86,6 +89,7 @@
 <script setup>
 const route = useRoute();
 const post = usePost();
+const sharedState = inject("sharedState");
 
 const status = ref("pending");
 const userFound = ref(null);

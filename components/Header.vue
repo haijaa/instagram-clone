@@ -3,10 +3,7 @@
     <h1 class="font-size-45">Instagram</h1>
 
     <v-container class="d-flex flex-row-reverse"> </v-container>
-    <v-col
-      v-if="$route.path === '/landingpage' && sharedState.userName"
-      class="d-flex flex-column align-center"
-    >
+    <v-col v-if="sharedState.userName" class="d-flex flex-column align-center">
       <v-card-title class="font-weight-bold">
         {{ sharedState.userName }}
       </v-card-title>
