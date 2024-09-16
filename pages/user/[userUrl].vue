@@ -71,9 +71,6 @@ const fetchUser = async () => {
 fetchUser();
 
 const userPosts = computed(() => {
-  return (
-    post.users.find((postFinal) => postFinal.user === route.params.userUrl)
-      .posts || null
-  );
+  return post.users.find((p) => p.user === route.params.userUrl).posts || null;
 });
 </script>
