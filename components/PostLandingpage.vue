@@ -19,7 +19,6 @@
     </v-card>
   </v-dialog>
 
-  <!-- <img src="../assets/images/leftside-menu.png" class="position-fixed" /> -->
   <v-container class="d-flex flex-column justify-space-between position-fixed">
     <v-icon
       icon="mdi-instagram"
@@ -44,7 +43,9 @@
     >
       <v-container class="d-flex flex-row justify-space-between align-center">
         <v-container class="d-flex flex-start flex-row align-center">
-          <v-card-title>{{ content.user }} </v-card-title>
+          <NuxtLink :to="`/user/${content.user}`">
+            <v-card-title>{{ content.user }} </v-card-title>
+          </NuxtLink>
           <v-card-subtitle>• 2 hours ago</v-card-subtitle>
         </v-container>
 

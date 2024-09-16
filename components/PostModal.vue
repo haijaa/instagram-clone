@@ -8,9 +8,16 @@
       <v-card title="POST">
         <v-container class="d-flex justify-center align-center flex-column">
           {{ sharedState.userName }}
-          <v-text-field class="w-50" label="Caption" />
+          <v-textarea
+            label="Caption"
+            variant="underlined"
+            clear-icon="mdi-close-circle"
+            clearable
+            :rules="rules"
+            counter
+          />
           <v-container class="w-100 h-100 d-flex justify-center align-center">
-            <v-icon icon="mdi-paperclip" size="100" />
+            <v-file-input />
           </v-container>
         </v-container>
         <v-card-actions>
@@ -30,4 +37,5 @@
 
 <script setup>
 const sharedState = inject("sharedState");
+const rules = [(c) => c.length <= 150 || "Max characters is 150"];
 </script>

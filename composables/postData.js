@@ -11,6 +11,11 @@ const postData = {
           picture: postPicture,
           likes: 1354,
         },
+        {
+          caption: "Same pic different day",
+          picture: postPicture,
+          likes: 47,
+        },
       ],
     },
     {
@@ -21,6 +26,11 @@ const postData = {
           caption: "Hihi look at this.",
           picture: postPicture,
           likes: 434,
+        },
+        {
+          caption: "Yepp, new pic",
+          picture: postPicture,
+          likes: 12,
         },
       ],
     },

@@ -45,7 +45,7 @@
         <v-btn
           v-if="rightUser"
           class="w-100"
-          color="success"
+          color="primary"
           text="BACK TO LOGIN"
           @click="
             navigateTo('/');
@@ -76,7 +76,10 @@
       v-if="!rightUser"
     >
       <NuxtLink :to="'/'">
-        <v-card-text class="justify-center d-flex font-weight-bold">
+        <v-card-text
+          class="justify-center d-flex font-weight-bold"
+          color="primary"
+        >
           Back to login
         </v-card-text>
       </NuxtLink>

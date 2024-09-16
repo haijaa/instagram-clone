@@ -33,10 +33,12 @@
 
 <script setup>
 import { useTheme } from "vuetify";
+import nuxtStorage from "nuxt-storage";
+
 const theme = useTheme();
 const toggleTheme = () => {
+  nuxtStorage.localStorage.setData("themeUser", theme.global.name.value);
   theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
+  nuxtStorage.localStorage.getData("themeUser");
 };
-
-
 </script>

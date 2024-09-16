@@ -10,6 +10,7 @@
             placeholder="Search user"
             color="surface-variant"
             class="w-50 mt-2"
+            variant="underlined"
             v-model="state.searchedUser"
             @keyup.enter="getUser"
           />
