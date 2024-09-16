@@ -33,17 +33,39 @@
         class="mt-10 d-flex flex-row justify-center align-center flex-space-evenly"
       >
         <div
+          id="allPosts"
           v-for="(post, index) in userPosts"
-          class="d-flex flex-column justify-center align-center"
+          class="d-flex flex-column justify-space-evenly align-center"
         >
-          <img :src="post.picture" style="width: 80%" />
-          <p>{{ post.caption }}</p>
-          <p><v-icon icon="mdi-heart-outline" />{{ post.likes }}</p>
+          <v-hover v-slot="{ isHovering, props }">
+            <div style="height: 300px; width: 300px; margin: 25px">
+              <v-img
+                :class="{ 'on-hover': isHovering }"
+                v-bind="props"
+                :elevation="isHovering ? 12 : 2"
+                :src="post.picture"
+                id="picturePost"
+                class="d-flex align-center justify-center"
+              >
+                <p v-if="isHovering" id="cardLikes">
+                  <v-icon icon="mdi-heart-outline" />{{ post.likes }}
+                </p>
+              </v-img>
+              <v-card-subtitle class="justify-start">{{
+                post.caption
+              }}</v-card-subtitle>
+            </div>
+          </v-hover>
         </div>
       </div>
     </div>
-    <div v-else class="d-flex justify-center align-center" style="height: 80vh">
+    <div
+      v-else
+      class="d-flex justify-center align-center flex-column"
+      style="height: 80vh"
+    >
       <strong>Oops, no result for {{ route.params.userUrl }} </strong>
+      <ReturnButton class="mt-5" />
     </div>
   </v-col>
 </template>
@@ -74,3 +96,21 @@ const userPosts = computed(() => {
   return post.users.find((p) => p.user === route.params.userUrl).posts || null;
 });
 </script>
+
+<style scoped>
+.on-hover {
+  transition: 0.4s ease-in-out;
+}
+
+.on-hover:hover {
+  opacity: 0.6;
+}
+
+#cardLikes {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+}
+</style>

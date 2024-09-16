@@ -2,7 +2,7 @@
   <main>
     <v-container class="d-flex justify-center align-center flex-column">
       <p>Sorry, it looks like something broke.</p>
-      <strong style="margin-top: 10px">{{ error.status }}</strong>
+      <strong style="margin-top: 10px">{{ error.statusCode }}</strong>
       <strong style="margin-top: 10px">{{ error.message }}</strong>
       <ReturnButton class="mt-5" />
     </v-container>

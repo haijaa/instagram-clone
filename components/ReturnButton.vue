@@ -1,5 +1,12 @@
 <template>
-  <NuxtLink :to="'/'">
-    <v-btn text="Home" @click="clearError()" variant="outlined" />
+  <NuxtLink>
+    <v-btn
+      text="GO BACK"
+      @click="$router.go(-1)"
+      variant="outlined"
+      color="primary"
+    />
   </NuxtLink>
 </template>
+
+<script setup></script>
