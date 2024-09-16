@@ -9,6 +9,7 @@
         style="margin-bottom: 10px"
         @click="navigateTo('/landingpage')"
       />
+      <Settings />
     </v-container>
     <div
       v-if="status === 'pending'"
@@ -22,12 +23,24 @@
       v-else-if="userFound"
       class="d-flex justfiy-center align-center flex-column"
     >
-      <h1>{{ userFound.username }}</h1>
-      <v-row class="mb-5 mt-5">
-        <p>Followers: {{ userFound.page.followers }}</p>
-        <p class="ml-5">Following: {{ userFound.page.following }}</p>
-      </v-row>
-      <strong>{{ userFound.page.presentation }}</strong>
+      <div>
+        <v-row class="align-center justify-center flex-space-evenly">
+          <h1>{{ userFound.username }}</h1>
+          <v-row class="ml-15 align-center">
+            <EditProfile />
+            <v-btn text="SHOW ARCHIVE" class="ml-2" />
+            <v-icon icon="mdi-cog-outline" class="ml-2 mr-2" />
+          </v-row>
+        </v-row>
+        <v-row justify="start" class="mt-5">
+          <p>{{ userFound.page.followers }} followers</p>
+          <p class="ml-5">{{ userFound.page.following }} following</p>
+        </v-row>
+        <v-row class="mt-7 d-flex flex-start">
+          <strong>{{ userFound.page.presentation }}</strong>
+        </v-row>
+      </div>
+      <v-divider :thinckness="2" color="error"></v-divider>
       <div
         v-if="userPosts"
         class="mt-10 d-flex flex-row justify-center align-center flex-space-evenly"
@@ -103,7 +116,7 @@ const userPosts = computed(() => {
 }
 
 .on-hover:hover {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 #cardLikes {

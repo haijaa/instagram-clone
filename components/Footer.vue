@@ -8,6 +8,7 @@
             :key="link"
             class="mx-2"
             @click="testButton()"
+            id="linksFooter"
           >
             <p>{{ link }}</p>
           </NuxtLink>
@@ -43,4 +44,8 @@ function testButton() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+#linksFooter:hover {
+  cursor: pointer;
+}
+</style>

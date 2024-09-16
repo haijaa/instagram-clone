@@ -96,7 +96,8 @@
           </div>
         </v-container>
         <v-card-text>
-          tjobido har och <strong>{{ postContent.likes - 1 }}</strong> gillat
+          tjobido och <strong>{{ postContent.likes - 1 }} andra</strong> har
+          gillat detta inlägg.
         </v-card-text>
         <v-card-text>
           <strong>{{ content.user }}: </strong>

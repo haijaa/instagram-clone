@@ -78,6 +78,9 @@ export default defineEventHandler(async (event) => {
         username: body.username,
         password: body.password,
         url: body.username,
+        page: {
+          presentation: body.presentation,
+        },
       });
       return {
         users: userDatabaseLogin.users,
