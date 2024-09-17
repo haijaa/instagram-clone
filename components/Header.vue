@@ -4,9 +4,14 @@
 
     <v-container class="d-flex flex-row-reverse"> </v-container>
     <v-col v-if="sharedState.userName" class="d-flex flex-column align-center">
-      <v-card-title class="font-weight-bold">
-        {{ sharedState.userName }}
-      </v-card-title>
+      <NuxtLink
+        style="text-decoration: none"
+        :to="`/user/${sharedState.userName}`"
+      >
+        <v-card-title class="font-weight-bold">
+          {{ sharedState.userName }}
+        </v-card-title>
+      </NuxtLink>
       <div class="d-flex flex-row" @click="logOutButton()">
         <v-btn text="Log out" size="small" variant="plain"> </v-btn>
         <v-icon icon="mdi-logout" />
