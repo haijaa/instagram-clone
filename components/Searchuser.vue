@@ -68,7 +68,7 @@ const state = reactive({
 
 function getUser() {
   state.filteredUser = posts.users.find(
-    (user) => user.user.includes(state.searchedUser),
+    (user) => user.user.includes(state.searchedUser.toLocaleLowerCase()),
     (search.value = false)
   );
   if (state.filteredUser) {

@@ -12,9 +12,7 @@ const state = reactive({
   passWord: "",
   comment: "",
 });
-
 provide("sharedState", state);
-
 useHead({
   title: "Instagram",
 });

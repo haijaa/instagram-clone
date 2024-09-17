@@ -43,8 +43,10 @@
     >
       <v-container class="d-flex flex-row justify-space-between align-center">
         <v-container class="d-flex flex-start flex-row align-center">
-          <NuxtLink :to="`/user/${content.user}`">
-            <v-card-title>{{ content.user }} </v-card-title>
+          <NuxtLink :to="`/user/${content.user}`" style="text-decoration: none">
+            <v-card-title style="font-size: medium"
+              >{{ content.user }}
+            </v-card-title>
           </NuxtLink>
           <v-card-subtitle>• 2 hours ago</v-card-subtitle>
         </v-container>
