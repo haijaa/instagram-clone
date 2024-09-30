@@ -1,93 +1,95 @@
 <template>
-  <v-col>
-    <v-container
-      class="d-flex flex-column justify-space-between position-fixed"
-    >
-      <v-icon
-        icon="mdi-instagram"
-        size="35"
-        style="margin-bottom: 10px"
-        @click="navigateTo('/landingpage')"
-      />
-      <Settings />
-    </v-container>
-    <div
-      v-if="status === 'pending'"
-      class="d-flex justify-center align-center"
-      style="height: 80vh"
-    >
-      <strong>Loading...</strong>
-    </div>
-
-    <div
-      v-else-if="userFound"
-      class="d-flex justfiy-center align-center flex-column"
-    >
-      <div>
-        <v-row class="align-center justify-center flex-space-evenly">
-          <h1>{{ userFound.username }}</h1>
-          <v-row
-            class="ml-15 align-center"
-            v-if="userFound.username === sharedState.userName"
-          >
-            <EditProfile />
-            <v-btn text="SHOW ARCHIVE" class="ml-2" />
-            <v-icon icon="mdi-cog-outline" class="ml-2 mr-2" />
-          </v-row>
-          <v-row v-else>
-            <v-btn text="FOLLOW" class="ml-10" />
-            <v-btn text="Message" class="ml-2" />
-          </v-row>
-        </v-row>
-        <v-row justify="start" class="mt-5">
-          <p>{{ userFound.page.followers }} followers</p>
-          <p class="ml-5">{{ userFound.page.following }} following</p>
-        </v-row>
-        <v-row class="mt-7 d-flex flex-start">
-          <strong>{{ userFound.page.presentation }}</strong>
-        </v-row>
-      </div>
-      <v-divider :thinckness="2" color="error"></v-divider>
-      <div
-        v-if="userPosts"
-        class="mt-10 d-flex flex-row justify-center align-center flex-space-evenly"
+  <NuxtLayout>
+    <v-col>
+      <v-container
+        class="d-flex flex-column justify-space-between position-fixed"
       >
+        <v-icon
+          icon="mdi-instagram"
+          size="35"
+          style="margin-bottom: 10px"
+          @click="navigateTo('/landingpage')"
+        />
+        <Settings />
+      </v-container>
+      <div
+        v-if="status === 'pending'"
+        class="d-flex justify-center align-center"
+        style="height: 80vh"
+      >
+        <strong>Loading...</strong>
+      </div>
+
+      <div
+        v-else-if="userFound"
+        class="d-flex justfiy-center align-center flex-column"
+      >
+        <div>
+          <v-row class="align-center justify-center flex-space-evenly">
+            <h1>{{ userFound.username }}</h1>
+            <v-row
+              class="ml-15 align-center"
+              v-if="userFound.username === sharedState.userName"
+            >
+              <EditProfile />
+              <v-btn text="SHOW ARCHIVE" class="ml-2" />
+              <v-icon icon="mdi-cog-outline" class="ml-2 mr-2" />
+            </v-row>
+            <v-row v-else>
+              <v-btn text="FOLLOW" class="ml-10" />
+              <v-btn text="Message" class="ml-2" />
+            </v-row>
+          </v-row>
+          <v-row justify="start" class="mt-5">
+            <p>{{ userFound.page.followers }} followers</p>
+            <p class="ml-5">{{ userFound.page.following }} following</p>
+          </v-row>
+          <v-row class="mt-7 d-flex flex-start">
+            <strong>{{ userFound.page.presentation }}</strong>
+          </v-row>
+        </div>
+        <v-divider :thinckness="2" color="error"></v-divider>
         <div
-          id="allPosts"
-          v-for="(post, index) in userPosts"
-          class="d-flex flex-column justify-space-evenly align-center"
+          v-if="userPosts"
+          class="mt-10 d-flex flex-row justify-center align-center flex-space-evenly"
         >
-          <v-hover v-slot="{ isHovering, props }">
-            <div style="height: 300px; width: 300px; margin: 25px">
-              <v-img
-                :class="{ 'on-hover': isHovering }"
-                v-bind="props"
-                :elevation="isHovering ? 12 : 2"
-                :src="post.picture"
-                id="picturePost"
-                class="d-flex align-center justify-center"
-              >
-                <p v-if="isHovering" id="cardLikes">
-                  <v-icon icon="mdi-heart-outline" />{{ post.likes }}
-                </p>
-              </v-img>
-              <v-card-subtitle class="justify-start">{{
-                post.caption
-              }}</v-card-subtitle>
-            </div>
-          </v-hover>
+          <div
+            id="allPosts"
+            v-for="(post, index) in userPosts"
+            class="d-flex flex-column justify-space-evenly align-center"
+          >
+            <v-hover v-slot="{ isHovering, props }">
+              <div style="height: 300px; width: 300px; margin: 25px">
+                <v-img
+                  :class="{ 'on-hover': isHovering }"
+                  v-bind="props"
+                  :elevation="isHovering ? 12 : 2"
+                  :src="post.picture"
+                  id="picturePost"
+                  class="d-flex align-center justify-center"
+                >
+                  <p v-if="isHovering" id="cardLikes">
+                    <v-icon icon="mdi-heart-outline" />{{ post.likes }}
+                  </p>
+                </v-img>
+                <v-card-subtitle class="justify-start">{{
+                  post.caption
+                }}</v-card-subtitle>
+              </div>
+            </v-hover>
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      v-else
-      class="d-flex justify-center align-center flex-column"
-      style="height: 80vh"
-    >
-      <strong>Oops, no result for {{ route.params.userUrl }} </strong>
-      <ReturnButton class="mt-5" />
-    </div>
-  </v-col>
+      <div
+        v-else
+        class="d-flex justify-center align-center flex-column"
+        style="height: 80vh"
+      >
+        <strong>Oops, no result for {{ route.params.userUrl }} </strong>
+        <ReturnButton class="mt-5" />
+      </div>
+    </v-col>
+  </NuxtLayout>
 </template>
 
 <script setup>

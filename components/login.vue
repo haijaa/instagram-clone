@@ -1,7 +1,5 @@
 <template>
-  <v-container
-    class="d-flex justify-center align-center flex-column flex-grow-2"
-  >
+  <v-container class="d-flex justify-center align-center flex-column">
     <v-card class="w-50 d-flex justify-center flex-column">
       <v-col>
         <v-card-title class="d-flex align-center justify-center">
@@ -81,6 +79,10 @@
 
 <script setup>
 import nuxtStorage from "nuxt-storage";
+
+definePageMeta({
+  layout: "plain",
+});
 
 const sharedState = inject("sharedState");
 const wrongUser = ref(false);

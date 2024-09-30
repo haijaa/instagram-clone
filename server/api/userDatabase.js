@@ -90,5 +90,16 @@ export default defineEventHandler(async (event) => {
     }
   } else if (event.method === "GET") {
     return userDatabaseLogin;
+  } else if (event.method === "PUT") {
+    const body = await readBody(event);
+
+    const userToUpdate = userDatabaseLogin.users.find(
+      (user) => user.username === body.username
+    );
+
+    if (userToUpdate) {
+      userToUpdate.page.presentation = body.presentation;
+      console.log("Succé!!");
+    }
   }
 });

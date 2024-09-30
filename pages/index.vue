@@ -1,8 +1,5 @@
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-    <Login />
-  </NuxtLayout>
+  <Login />
 </template>
 
 <script setup></script>

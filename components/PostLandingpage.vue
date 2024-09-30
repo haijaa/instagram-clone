@@ -18,20 +18,7 @@
       >
     </v-card>
   </v-dialog>
-
-  <v-container class="d-flex flex-column justify-space-between position-fixed">
-    <v-icon
-      icon="mdi-instagram"
-      size="35"
-      style="margin-bottom: 10px"
-      @click="refreshPage"
-    />
-
-    <Searchuser />
-    <PostModal />
-    <Settings />
-    <v-icon icon="mdi-like" size="35" />
-  </v-container>
+  <SideMenu />
   <v-container
     class="d-flex justify-center flex-column align-center"
     v-if="showPost"
@@ -169,10 +156,6 @@ const toggleComments = (postId) => {
   } else {
     activePostId.value = postId;
   }
-};
-
-const refreshPage = () => {
-  location.reload();
 };
 
 const fetchComments = async (postId) => {

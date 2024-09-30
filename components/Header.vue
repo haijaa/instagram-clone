@@ -27,9 +27,6 @@ sharedState.userName = nuxtStorage.localStorage.getData("loginUsername");
 
 const logOutButton = () => {
   navigateTo("/");
-  sharedState.userName = nuxtStorage.localStorage.setData(
-    "loginUsername",
-    null
-  );
+  sharedState.userName = nuxtStorage.localStorage.setData("loginUsername", "");
 };
 </script>
