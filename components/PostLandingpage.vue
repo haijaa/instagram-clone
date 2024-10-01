@@ -41,8 +41,8 @@
         <v-card-text class="font-weight-bold text-h5">...</v-card-text>
       </v-container>
       <v-container
-        v-for="postContent in content.posts"
-        :key="postContent.caption"
+        v-for="(postContent, index) in content.posts"
+        :key="index"
         class="d-flex flex-column"
       >
         <img
@@ -132,10 +132,8 @@
 
 <script setup>
 import { usePost } from "../composables/postData";
-import nuxtStorage from "nuxt-storage";
+import { getValue } from "~/composables/useLocalstorage";
 const sharedState = inject("sharedState");
-
-sharedState.userName = nuxtStorage.localStorage.getData("loginUsername");
 
 const post = usePost();
 let commentsOnPosts = ref([]);
@@ -184,6 +182,7 @@ const postComments = async (postId) => {
 };
 
 const isUserLoggedIn = () => {
+  getValue("loginUsername");
   if (sharedState.userName === "" || sharedState.userName === null) {
     logInPrompt.value = true;
   }

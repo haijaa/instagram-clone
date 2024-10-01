@@ -16,29 +16,22 @@
           />
           <v-icon icon="mdi-magnify" size="35" class="ml-5" @click="getUser" />
         </v-container>
-        <v-card-text v-if="search" style="color: red">{{
+        <v-card-text v-if="search" style="color: red; height: 300px">{{
           errorMessage
         }}</v-card-text>
       </v-card>
-      <v-card v-if="state.filteredUser">
-        <v-card-title>Posts by {{ state.filteredUser.user }}</v-card-title>
-        <v-row>
+      <v-card v-if="state.filteredUser" style="height: 300px">
+        <v-card-title v-if="state.searchedUser.length > 2"
+          >Results for {{ state.searchedUser }}</v-card-title
+        >
+        <NuxtLink @click="navigateTo(`/user/${state.filteredUser}`)">
           <v-col
-            v-for="(post, index) in state.filteredUser.posts"
+            v-for="(userFound, index) in state.filteredUser.user"
             :key="index"
-            cols="6"
-            class="d-flex flex-column align-center"
           >
-            <img
-              :src="post.picture"
-              style="height: 250px; width: 200px; margin-bottom: 25px"
-            />
-            <v-card-subtitle class="font-weight-bold"
-              >Caption: {{ post.caption }}</v-card-subtitle
-            >
-            <v-card-subtitle>Likes: {{ post.likes }}</v-card-subtitle>
+            Go to {{ userFound }}s page
           </v-col>
-        </v-row>
+        </NuxtLink>
       </v-card>
       <v-container class="d-flex flex-row justify-end">
         <v-btn
@@ -72,9 +65,20 @@ function getUser() {
     (search.value = false)
   );
   if (state.filteredUser) {
-    console.log(state.filteredUser);
+    console.log(state.filteredUser.user);
   } else {
     search.value = true;
   }
 }
+
+/* watch(
+  () => state.searchedUser,
+  (newSearch) => {
+    if (newSearch.length >= 2) {
+      getUser();
+    } else {
+      console.log("Det blev lite fel.");
+    }
+  }
+); */
 </script>

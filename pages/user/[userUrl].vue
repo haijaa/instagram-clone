@@ -57,6 +57,7 @@
             id="allPosts"
             v-for="(post, index) in userPosts"
             class="d-flex flex-column justify-space-evenly align-center"
+            :key="index"
           >
             <v-hover v-slot="{ isHovering, props }">
               <div style="height: 300px; width: 300px; margin: 25px">

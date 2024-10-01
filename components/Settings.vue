@@ -8,13 +8,14 @@
         <v-card class="w-50">
           <v-card-title> Settings </v-card-title>
           <v-switch
-            @click="toggleTheme()"
+            @click="toggleTheme"
             :label="
               theme.global.current.value.dark
                 ? 'Swap to lightmode'
                 : 'Swap to darkmode'
             "
             class="ml-5"
+            v-model="theme.global.current.value.dark"
           />
           <v-container class="d-flex justify-end">
             <v-btn
@@ -33,17 +34,20 @@
 
 <script setup>
 import { useTheme } from "vuetify";
-import nuxtStorage from "nuxt-storage";
+import { storeValue, getValue } from "~/composables/useLocalstorage";
 
 const theme = useTheme();
+const storedTheme = getValue("themeUser");
 
-const storedTheme = nuxtStorage.localStorage.getData("themeUser");
-if (storedTheme) {
-  theme.global.name.value = storedTheme;
-}
+onMounted(() => {
+  if (storedTheme) {
+    theme.global.name.value = storedTheme;
+  }
+});
 
 const toggleTheme = () => {
-  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
-  nuxtStorage.localStorage.setData("themeUser", theme.global.name.value);
+  const newTheme = theme.global.current.value.dark ? "light" : "dark";
+  theme.global.name.value = newTheme;
+  storeValue("themeUser", newTheme);
 };
 </script>

@@ -1,5 +1,16 @@
-import nuxtStorage from "nuxt-storage";
+export const storeValue = (key, value) => {
+  if (process.client) {
+    localStorage.setItem(key, value);
+  } else {
+    console.warn("localStorage is not available on the server side.");
+  }
+};
 
-export default storeValue = (key, val) => {
-  nuxtStorage.localStorage.setDate("key", "value");
+export const getValue = (key) => {
+  if (process.client) {
+    return localStorage.getItem(key);
+  } else {
+    console.warn("localStorage is not available on the server side.");
+    return null;
+  }
 };

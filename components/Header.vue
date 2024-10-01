@@ -21,12 +21,12 @@
 </template>
 
 <script setup>
-import nuxtStorage from "nuxt-storage";
+import { storeValue, getValue } from "../composables/useLocalstorage";
 const sharedState = inject("sharedState");
-sharedState.userName = nuxtStorage.localStorage.getData("loginUsername");
+sharedState.userName = getValue("loginUsername");
 
 const logOutButton = () => {
   navigateTo("/");
-  sharedState.userName = nuxtStorage.localStorage.setData("loginUsername", "");
+  sharedState.userName = storeValue("loginUsername", "");
 };
 </script>

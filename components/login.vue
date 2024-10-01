@@ -78,7 +78,7 @@
 </template>
 
 <script setup>
-import nuxtStorage from "nuxt-storage";
+import { storeValue } from "~/composables/useLocalstorage";
 
 definePageMeta({
   layout: "plain",
@@ -98,10 +98,9 @@ const doesUserExist = async () => {
       user.password === sharedState.password
   );
   if (user) {
-    console.log("Hitta en användare.");
     navigateTo("/landingpage");
     sharedState.password = "";
-    nuxtStorage.localStorage.setData("loginUsername", sharedState.userName);
+    storeValue("loginUsername", sharedState.userName);
   } else {
     console.log("Finns ingen sådan användare/fel lösenord");
     wrongUser.value = true;
