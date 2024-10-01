@@ -33,7 +33,12 @@
             >
               <EditProfile />
               <v-btn text="SHOW ARCHIVE" class="ml-2" />
-              <v-icon icon="mdi-cog-outline" class="ml-2 mr-2" />
+              <!-- <v-icon
+                icon="mdi-cog-outline"
+                class="ml-2 mr-2"
+                v-if="sharedState.userName === userFound.username"
+              /> -->
+              <MenuCog v-if="sharedState.userName === userFound.username" />
             </v-row>
             <v-row v-else>
               <v-btn text="FOLLOW" class="ml-10" />
