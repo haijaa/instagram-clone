@@ -78,7 +78,7 @@
 </template>
 
 <script setup>
-import { storeValue } from "~/composables/useLocalstorage";
+import { storeValue } from "~/composables/Functions";
 
 definePageMeta({
   layout: "plain",

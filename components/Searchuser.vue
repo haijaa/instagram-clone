@@ -21,16 +21,13 @@
         }}</v-card-text>
       </v-card>
       <v-card v-if="state.filteredUser" style="height: 300px">
-        <v-card-title v-if="state.searchedUser.length > 2"
-          >Results for {{ state.searchedUser }}</v-card-title
+        <v-card-title>Results for {{ state.searchedUser }}</v-card-title>
+        <NuxtLink
+          v-for="userFound in state.filteredUser"
+          :key="userFound.id"
+          @click="navigateTo(`/user/${userFound.user}`)"
         >
-        <NuxtLink @click="navigateTo(`/user/${state.filteredUser}`)">
-          <v-col
-            v-for="(userFound, index) in state.filteredUser.user"
-            :key="index"
-          >
-            Go to {{ userFound }}s page
-          </v-col>
+          {{ userFound.user }}
         </NuxtLink>
       </v-card>
       <v-container class="d-flex flex-row justify-end">
@@ -52,33 +49,32 @@ import { reactive } from "vue";
 
 const search = ref(false);
 const errorMessage = "No user by that name, try another";
-
 const posts = usePost();
 const state = reactive({
   searchedUser: "",
-  filteredUser: null,
+  filteredUser: [],
 });
 
 function getUser() {
-  state.filteredUser = posts.users.find(
+  state.filteredUser = posts.users.filter(
     (user) => user.user.includes(state.searchedUser.toLocaleLowerCase()),
     (search.value = false)
   );
   if (state.filteredUser) {
-    console.log(state.filteredUser.user);
+    console.log(state.filteredUser);
   } else {
     search.value = true;
   }
 }
 
-/* watch(
+watch(
   () => state.searchedUser,
-  (newSearch) => {
-    if (newSearch.length >= 2) {
+  (newValue) => {
+    if (newValue.length >= 2) {
       getUser();
     } else {
-      console.log("Det blev lite fel.");
+      state.filteredUser = [];
     }
   }
-); */
+);
 </script>

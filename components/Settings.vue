@@ -34,7 +34,7 @@
 
 <script setup>
 import { useTheme } from "vuetify";
-import { storeValue, getValue } from "~/composables/useLocalstorage";
+import { storeValue, getValue } from "~/composables/Functions";
 
 const theme = useTheme();
 const storedTheme = getValue("themeUser");

@@ -132,7 +132,7 @@
 
 <script setup>
 import { usePost } from "../composables/postData";
-import { getValue } from "~/composables/useLocalstorage";
+import { getValue } from "~/composables/Functions";
 const sharedState = inject("sharedState");
 
 const post = usePost();
