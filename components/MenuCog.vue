@@ -1,38 +1,27 @@
 <template>
-  <v-menu>
+  <v-dialog>
     <template v-slot:activator="{ props: activatorProps }">
-      <v-icon icon="mdi-cog-outline" size="35" v-bind="activatorProps" />
+      <v-icon icon="mdi-cog-outline" size="35" v-bind="activatorProps" @click="hejhej()"/>
     </template>
     <template v-slot:default="{ isActive }">
-      <v-container class="d-flex justify-center align-center">
-        <v-card class="w-50">
-          <v-card-title> Settings </v-card-title>
-          <v-switch
-            @click="toggleTheme"
-            :label="
-              theme.global.current.value.dark
-                ? 'Swap to lightmode'
-                : 'Swap to darkmode'
-            "
-            class="ml-5"
-            v-model="theme.global.current.value.dark"
-          />
-          <v-container class="d-flex justify-end">
-            <v-btn
-              @click="isActive.value = false"
-              text="Close"
-              class="w-25"
-              color="error"
-              variant="text"
-            />
-          </v-container>
-        </v-card>
+      <v-container class="d-flex justify-center align-center flex-column">
+          <v-card style="min-width: 50%; border-radius: 4%;">
+            <NuxtLink class="hover"><v-card-title class="justify-center">Appar och webbplatser</v-card-title><v-divider/></NuxtLink>
+            <NuxtLink class="hover"><v-card-title>QR-kod</v-card-title><v-divider/></NuxtLink>
+            <NuxtLink class="hover"><v-card-title>Aviseringar</v-card-title><v-divider/></NuxtLink>
+            <NuxtLink class="hover"><v-card-title>Inställlningar och integritet</v-card-title><v-divider/></NuxtLink>
+            <NuxtLink class="hover"><v-card-title>Meta Verified</v-card-title><v-divider/></NuxtLink>
+            <NuxtLink class="hover"><v-card-title>Vägledning</v-card-title><v-divider/></NuxtLink>
+            <NuxtLink class="hover"><v-card-title>Logga ut</v-card-title><v-divider/></NuxtLink>
+            <NuxtLink class="hover"><v-card-title @click="isActive.value = false">Avbryt</v-card-title><v-divider/></NuxtLink>
+          </v-card>
       </v-container>
     </template>
-  </v-menu>
+  </v-dialog>
 </template>
 
 <script setup>
+
 import { storeValue, getValue } from "../composables/Functions";
 const sharedState = inject("sharedState");
 sharedState.userName = getValue("loginUsername");
@@ -41,4 +30,15 @@ const logOutButton = () => {
   navigateTo("/");
   sharedState.userName = storeValue("loginUsername", "");
 };
+
+const hejhej = () => {
+  console.log('Du har klickat.')
+}
 </script>
+
+<style>
+.hover:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+</style>

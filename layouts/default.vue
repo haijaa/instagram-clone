@@ -1,11 +1,10 @@
 <template>
-  <Header />
   <div class="standard">
-    <slot />
     <SideMenu />
+    <slot />
   </div>
   <v-footer>
-    <Footer />
+    <Footer class="mb-0"/>
   </v-footer>
 </template>
 

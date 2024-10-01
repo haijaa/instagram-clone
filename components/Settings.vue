@@ -1,12 +1,17 @@
 <template>
-  <v-dialog>
+  <v-menu>
     <template v-slot:activator="{ props: activatorProps }">
-      <v-icon icon="mdi-cog-outline" size="35" v-bind="activatorProps" />
+      <v-icon icon="mdi-menu" size="25" v-bind="activatorProps" />
     </template>
     <template v-slot:default="{ isActive }">
-      <v-container class="d-flex justify-center align-center">
-        <v-card class="w-50">
-          <v-card-title> Settings </v-card-title>
+      <v-menu>
+      <template v-slot:activator="{ props: openSettings }">
+        <v-list-item class="hover" v-bind="openSettings" @click="isActive.value = false; settingsOpened.value = true">
+          Swap theme
+        </v-list-item>
+      </template>
+      <template v-slot:default="{ settingsOpened }">
+        <v-list-title> Settings </v-list-title>
           <v-switch
             @click="toggleTheme"
             :label="
@@ -17,19 +22,13 @@
             class="ml-5"
             v-model="theme.global.current.value.dark"
           />
-          <v-container class="d-flex justify-end">
-            <v-btn
-              @click="isActive.value = false"
-              text="Close"
-              class="w-25"
-              color="error"
-              variant="text"
-            />
-          </v-container>
-        </v-card>
-      </v-container>
+      </template>
+    </v-menu>
+        <v-list-item @click="logOutButton()" class="hover">
+          Log out
+        </v-list-item>
     </template>
-  </v-dialog>
+  </v-menu>
 </template>
 
 <script setup>
@@ -44,6 +43,11 @@ onMounted(() => {
     theme.global.name.value = storedTheme;
   }
 });
+
+const logOutButton = () => {
+  navigateTo("/");
+  sharedState.userName = storeValue("loginUsername", "");
+};
 
 const toggleTheme = () => {
   const newTheme = theme.global.current.value.dark ? "light" : "dark";

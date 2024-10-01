@@ -1,21 +1,10 @@
 <template>
   <NuxtLayout>
     <v-col>
-      <v-container
-        class="d-flex flex-column justify-space-between position-fixed"
-      >
-        <v-icon
-          icon="mdi-instagram"
-          size="35"
-          style="margin-bottom: 10px"
-          @click="navigateTo('/landingpage')"
-        />
-        <Settings />
-      </v-container>
       <div
         v-if="status === 'pending'"
         class="d-flex justify-center align-center"
-        style="height: 80vh"
+        style="height: 80vh;"
       >
         <strong>Loading...</strong>
       </div>
@@ -24,7 +13,7 @@
         v-else-if="userFound"
         class="d-flex justfiy-center align-center flex-column"
       >
-        <div>
+        <div style="margin-top: 100px;">
           <v-row class="align-center justify-center flex-space-evenly">
             <h1>{{ userFound.username }}</h1>
             <v-row
@@ -33,11 +22,7 @@
             >
               <EditProfile />
               <v-btn text="SHOW ARCHIVE" class="ml-2" />
-              <!-- <v-icon
-                icon="mdi-cog-outline"
-                class="ml-2 mr-2"
-                v-if="sharedState.userName === userFound.username"
-              /> -->
+
               <MenuCog v-if="sharedState.userName === userFound.username" />
             </v-row>
             <v-row v-else>

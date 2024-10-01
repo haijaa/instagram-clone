@@ -1,7 +1,7 @@
 <template>
   <v-dialog>
     <template v-slot:activator="{ props: activatorProps }">
-      <v-icon icon="mdi-magnify" size="35" v-bind="activatorProps" />
+      <v-icon icon="mdi-magnify" size="25" v-bind="activatorProps" />
     </template>
     <template v-slot:default="{ isActive }">
       <v-card class="d-flex flex-column justify-center align-center">
