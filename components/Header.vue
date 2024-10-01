@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { storeValue, getValue } from "../composables/useLocalstorage";
+import { storeValue, getValue } from "../composables/Functions";
 const sharedState = inject("sharedState");
 sharedState.userName = getValue("loginUsername");
 
