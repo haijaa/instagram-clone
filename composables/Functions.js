@@ -14,3 +14,10 @@ export const getValue = (key) => {
     return null;
   }
 };
+
+export const isUserLoggedIn = (namevalue, statusvalue) => {
+  getValue("loginUsername");
+  if (namevalue === "" || namevalue === null) {
+    statusvalue.value = true;
+  }
+};

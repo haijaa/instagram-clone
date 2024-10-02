@@ -1,7 +1,7 @@
 <template>
-  <v-dialog max-width="500" v-model="logInPrompt">
+  <!--   <v-dialog max-width="500" v-model="logInPrompt">
     <v-card class="d-flex justify-center align-center">
-      <strong class="mt-10">Need to be logged in to show posts.</strong>
+      <strong class="mt-10">Need to be logged in to browse our site</strong>
       <p>Click the button below</p>
       <v-btn
         text="LOG IN"
@@ -17,7 +17,8 @@
         >LOG IN</v-btn
       >
     </v-card>
-  </v-dialog>
+  </v-dialog> -->
+  <UserLoggedInControl v-if="logInPrompt" />
   <SideMenu />
   <v-container
     class="d-flex justify-center flex-column align-center"
@@ -30,15 +31,20 @@
     >
       <v-container class="d-flex flex-row justify-space-between align-center">
         <v-container class="d-flex flex-start flex-row align-center">
-          <NuxtLink :to="`/user/${content.user}`" style="text-decoration: none">
-            <v-card-title style="font-size: medium"
-              >{{ content.user }}
-            </v-card-title>
-          </NuxtLink>
+          <img
+            :src="content.profilePic"
+            style="width: 40px; height: 35px; border-radius: 50%"
+          />
+          <v-card-title
+            style="font-size: medium"
+            @click="navigateTo(`/user/${content.user}`)"
+            class="hover"
+          >
+            {{ content.user }}
+          </v-card-title>
           <v-card-subtitle>• 2 hours ago</v-card-subtitle>
         </v-container>
-
-        <v-card-text class="font-weight-bold text-h5">...</v-card-text>
+        <MoreButtonClicked :userInformation="content.user" />
       </v-container>
       <v-container
         v-for="(postContent, index) in content.posts"
@@ -132,7 +138,7 @@
 
 <script setup>
 import { usePost } from "../composables/postData";
-import { getValue } from "~/composables/Functions";
+import { getValue, isUserLoggedIn } from "~/composables/Functions";
 const sharedState = inject("sharedState");
 
 const post = usePost();
@@ -142,8 +148,9 @@ const showPost = ref(true);
 const invalidUserComment = ref(false);
 const activePostId = ref(null);
 const logInPrompt = ref(false);
-
 const likedPosts = reactive({});
+const userInformation = ref([]);
+
 const userInput = reactive({
   commentContent: "",
 });
@@ -181,13 +188,15 @@ const postComments = async (postId) => {
   }
 };
 
-const isUserLoggedIn = () => {
+isUserLoggedIn(sharedState.userName, logInPrompt);
+
+/* const isUserLoggedIn = () => {
   getValue("loginUsername");
   if (sharedState.userName === "" || sharedState.userName === null) {
     logInPrompt.value = true;
   }
 };
-isUserLoggedIn();
+isUserLoggedIn(); */
 
 const likePost = (postId) => {
   console.log(`Post ID mottagen: ${postId}`);
@@ -200,4 +209,8 @@ const likePost = (postId) => {
     `Klickat hjärta för inlägg ${postId}. Ny status: ${likedPosts[postId]}`
   );
 };
+
+defineProps({
+  userInformation: String,
+});
 </script>

@@ -1,9 +1,12 @@
+import profileImage from "../../assets/images/elefant.png";
+
 let userDatabaseLogin = {
   users: [
     {
       fullname: "Anton Karlsson",
       username: "antkarl",
       password: "password123",
+      profilePic: profileImage,
       url: "antkarl",
       page: {
         presentation: "Hej och hå detta är anton karlsson",
@@ -15,6 +18,7 @@ let userDatabaseLogin = {
       fullname: "Måns Wikman",
       username: "manswikman",
       password: "gunga123",
+      profilePic: profileImage,
       url: "manswikman",
       page: {
         presentation: "Kommer inte på vad jag ska skriva. Måns Wikman",
@@ -26,6 +30,7 @@ let userDatabaseLogin = {
       fullname: "Frida Wikman",
       username: "fridawikman",
       password: "losenord123",
+      profilePic: profileImage,
       url: "fridawikman",
       page: {
         presentation: "Något annat Frida Wikman",
@@ -37,6 +42,7 @@ let userDatabaseLogin = {
       fullname: "Anders Karlsson",
       username: "qupex",
       password: "vetinte123",
+      profilePic: profileImage,
       url: "qupex",
       page: {
         presentation: "Nu skriver jag en rad. Anders Karlsson",
@@ -48,6 +54,7 @@ let userDatabaseLogin = {
       fullname: "John Doe",
       username: "9gag",
       password: "nooneknows",
+      profilePic: profileImage,
       url: "9gag",
       page: {
         presentation: "This is John Doe speaking",
@@ -59,6 +66,7 @@ let userDatabaseLogin = {
       fullname: "Some name",
       username: "memezar",
       password: "meme",
+      profilePic: profileImage,
       url: "memezar",
       page: {
         presentation: "Official page of memezar",

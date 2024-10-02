@@ -1,10 +1,11 @@
 <template>
+  <UserLoggedInControl v-if="logInPrompt" />
   <NuxtLayout>
     <v-col>
       <div
         v-if="status === 'pending'"
         class="d-flex justify-center align-center"
-        style="height: 80vh;"
+        style="height: 80vh"
       >
         <strong>Loading...</strong>
       </div>
@@ -13,35 +14,51 @@
         v-else-if="userFound"
         class="d-flex justfiy-center align-center flex-column"
       >
-        <div style="margin-top: 100px;">
-          <v-row class="align-center justify-center flex-space-evenly">
-            <h1>{{ userFound.username }}</h1>
-            <v-row
-              class="ml-15 align-center"
-              v-if="userFound.username === sharedState.userName"
-            >
-              <EditProfile />
-              <v-btn text="SHOW ARCHIVE" class="ml-2" />
+        <div
+          style="margin-top: 100px"
+          class="d-flex justify-center align-center"
+        >
+          <div>
+            <img
+              :src="userFound.profilePic"
+              style="
+                width: 60px;
+                height: 50px;
+                border-radius: 50%;
+                margin-right: 60px;
+              "
+            />
+          </div>
+          <div>
+            <v-row class="align-center justify-center flex-space-evenly">
+              <h1>{{ userFound.username }}</h1>
+              <v-row
+                class="ml-15 align-center"
+                v-if="userFound.username === sharedState.userName"
+              >
+                <EditProfile />
+                <v-btn text="SHOW ARCHIVE" class="ml-2" />
 
-              <MenuCog v-if="sharedState.userName === userFound.username" />
+                <MenuCog v-if="sharedState.userName === userFound.username" />
+              </v-row>
+              <v-row v-else>
+                <v-btn text="FOLLOW" class="ml-10" />
+                <v-btn text="Message" class="ml-2" />
+              </v-row>
             </v-row>
-            <v-row v-else>
-              <v-btn text="FOLLOW" class="ml-10" />
-              <v-btn text="Message" class="ml-2" />
+            <v-row justify="start" class="mt-5">
+              <p>{{ userFound.page.followers }} followers</p>
+              <p class="ml-5">{{ userFound.page.following }} following</p>
             </v-row>
-          </v-row>
-          <v-row justify="start" class="mt-5">
-            <p>{{ userFound.page.followers }} followers</p>
-            <p class="ml-5">{{ userFound.page.following }} following</p>
-          </v-row>
-          <v-row class="mt-7 d-flex flex-start">
-            <strong>{{ userFound.page.presentation }}</strong>
-          </v-row>
+            <v-row class="mt-7 d-flex flex-start">
+              <strong>{{ userFound.page.presentation }}</strong>
+            </v-row>
+          </div>
         </div>
         <v-divider :thinckness="2" color="error"></v-divider>
         <div
           v-if="userPosts"
-          class="mt-10 d-flex flex-row justify-center align-center flex-space-evenly"
+          class="mt-10 ml-15 d-flex flex-row justify-center align-center flex-space-evenly"
         >
           <div
             id="allPosts"
@@ -84,12 +101,16 @@
 </template>
 
 <script setup>
+import { getValue, isUserLoggedIn } from "~/composables/Functions";
+
+const logInPrompt = ref(false);
 const route = useRoute();
 const post = usePost();
 const sharedState = inject("sharedState");
-
 const status = ref("pending");
 const userFound = ref(null);
+
+getValue("loginUsername");
 
 const fetchUser = async () => {
   const data = await $fetch(`/api/userDatabase/`);
@@ -109,6 +130,8 @@ fetchUser();
 const userPosts = computed(() => {
   return post.users.find((p) => p.user === route.params.userUrl).posts || null;
 });
+
+isUserLoggedIn(sharedState.userName, logInPrompt);
 </script>
 
 <style scoped>

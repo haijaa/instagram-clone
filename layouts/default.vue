@@ -4,8 +4,14 @@
     <slot />
   </div>
   <v-footer>
-    <Footer class="mb-0"/>
+    <Footer class="foot" />
   </v-footer>
 </template>
+
+<script setup>
+definePageMeta({
+  middleware: "auth",
+});
+</script>
 
 <style></style>

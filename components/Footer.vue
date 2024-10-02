@@ -47,5 +47,6 @@ function testButton() {
 <style scoped>
 #linksFooter:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
 </style>

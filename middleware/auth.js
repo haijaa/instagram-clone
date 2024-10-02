@@ -1,10 +1,10 @@
+/* import { useAuth } from "~/composables/useAuth";
+
 export default defineNuxtRouteMiddleware((to, from) => {
-  const sharedState = inject("sharedState");
-  if (to.params.route === "/landingpage" && !sharedState.userName) {
-    return abortNavigation(
-      createError({
-        message: "Log in to view this page.",
-      })
-    );
+  const { isUserLoggedIn } = useAuth();
+
+  if (!isUserLoggedIn()) {
+    return navigateTo("/");
   }
 });
+ */

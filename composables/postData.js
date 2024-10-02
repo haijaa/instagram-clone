@@ -1,10 +1,12 @@
 import postPicture from "../assets/images/picture-post.png";
+import profileImage from "../../assets/images/elefant.png";
 
 const postData = {
   users: [
     {
       id: 1,
       user: "antkarl",
+      profilePic: profileImage,
       posts: [
         {
           caption: "Just another day in paradise.",
@@ -21,6 +23,7 @@ const postData = {
     {
       id: 2,
       user: "fridawikman",
+      profilePic: profileImage,
       posts: [
         {
           caption: "Hihi look at this.",
@@ -37,6 +40,7 @@ const postData = {
     {
       id: 3,
       user: "manswikman",
+      profilePic: profileImage,
       posts: [
         {
           caption: "New day new swing.",
@@ -48,6 +52,7 @@ const postData = {
     {
       id: 4,
       user: "qupex",
+      profilePic: profileImage,
       posts: [
         {
           caption: "A little vacation.",
@@ -59,6 +64,7 @@ const postData = {
     {
       id: 5,
       user: "livskrafter",
+      profilePic: profileImage,
       posts: [
         {
           caption: "Amazing view.",
@@ -70,6 +76,7 @@ const postData = {
     {
       id: 6,
       user: "memezar",
+      profilePic: profileImage,
       posts: [
         {
           caption: "would you look at this",
@@ -81,6 +88,7 @@ const postData = {
     {
       id: 7,
       user: "9gag",
+      profilePic: profileImage,
       posts: [
         {
           caption: "usch!",
