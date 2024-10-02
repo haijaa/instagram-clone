@@ -69,12 +69,14 @@
           </div>
           <div class="d-flex justify-end">
             <v-icon
-              :icon="
-                savedPost
-                  ? 'mdi-folder-check-outline'
-                  : 'mdi-folder-arrow-down-outline'
-              "
-              @click="savedPost = !savedPost"
+              @click="savePost(content.id)"
+              icon="mdi-folder-check"
+              v-if="savedPost[content.id]"
+            />
+            <v-icon
+              @click="savePost(content.id)"
+              icon="mdi-folder-arrow-down-outline"
+              v-else
             />
           </div>
         </v-container>
@@ -129,7 +131,7 @@ import { usePost } from "../composables/postData";
 import { getValue, isUserLoggedIn } from "~/composables/Functions";
 const sharedState = inject("sharedState");
 
-const savedPost = ref([]);
+const savedPost = reactive([]);
 const post = usePost();
 let commentsOnPosts = ref([]);
 
@@ -149,6 +151,16 @@ const toggleComments = (postId) => {
     activePostId.value = null;
   } else {
     activePostId.value = postId;
+  }
+};
+
+const savePost = (postId) => {
+  if (!savedPost[postId]) {
+    savedPost[postId] = true;
+    console.log(savedPost);
+  } else {
+    savedPost[postId] = false;
+    console.log(savedPost);
   }
 };
 
