@@ -1,23 +1,4 @@
 <template>
-  <!--   <v-dialog max-width="500" v-model="logInPrompt">
-    <v-card class="d-flex justify-center align-center">
-      <strong class="mt-10">Need to be logged in to browse our site</strong>
-      <p>Click the button below</p>
-      <v-btn
-        text="LOG IN"
-        @click="
-          navigateTo('/');
-          load;
-        "
-        variant="flat"
-        :loading="loading"
-        color="primary"
-        height="25"
-        class="mt-10 mb-10"
-        >LOG IN</v-btn
-      >
-    </v-card>
-  </v-dialog> -->
   <UserLoggedInControl v-if="logInPrompt" />
   <SideMenu />
   <v-container
@@ -87,7 +68,14 @@
             <ShareContent />
           </div>
           <div class="d-flex justify-end">
-            <v-icon icon="mdi-content-save-outline" />
+            <v-icon
+              :icon="
+                savedPost
+                  ? 'mdi-folder-check-outline'
+                  : 'mdi-folder-arrow-down-outline'
+              "
+              @click="savedPost = !savedPost"
+            />
           </div>
         </v-container>
         <v-card-text>
@@ -141,6 +129,7 @@ import { usePost } from "../composables/postData";
 import { getValue, isUserLoggedIn } from "~/composables/Functions";
 const sharedState = inject("sharedState");
 
+const savedPost = ref([]);
 const post = usePost();
 let commentsOnPosts = ref([]);
 
@@ -189,14 +178,6 @@ const postComments = async (postId) => {
 };
 
 isUserLoggedIn(sharedState.userName, logInPrompt);
-
-/* const isUserLoggedIn = () => {
-  getValue("loginUsername");
-  if (sharedState.userName === "" || sharedState.userName === null) {
-    logInPrompt.value = true;
-  }
-};
-isUserLoggedIn(); */
 
 const likePost = (postId) => {
   console.log(`Post ID mottagen: ${postId}`);
