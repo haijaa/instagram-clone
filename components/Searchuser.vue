@@ -8,14 +8,15 @@
         <v-card-title>Search</v-card-title>
         <v-divider />
         <v-container class="d-flex justify-center align-center">
-          <input type="text" placeholder="Search" style="width: 80%;" v-model="state.searchedUser">
+          <input type="text" placeholder="Search" style="width: 80%; background-color: #ededed" v-model="state.searchedUser">
           <v-icon icon="mdi-magnify" @click="getUser()"/>
         </input>
         </v-container>
         <v-container v-if="state.filteredUser.length > 0">
           Results for {{ state.searchedUser }}
           <v-list>
-            <v-container v-for="userFound in state.filteredUser" class="d-flex flex-row">
+            <v-container v-for="userFound in state.filteredUser" class="d-flex flex-row justify-center align-center">
+              <img :src="userFound.profilePic" style="width: 50px; height: 40px; border-radius: 50%; margin-right: 10px" />
               <p class="hover" @click="navigateTo(`/user/${userFound.user}`)">{{ userFound.user }}</p>
               <v-card-subtitle> - {{ userFound.posts.length }} posts</v-card-subtitle>
             </v-container>
