@@ -13,3 +13,6 @@ useHead({
   title: "Instagram",
 });
 </script>
+<style>
+@import "./assets/css/global.css";
+</style>

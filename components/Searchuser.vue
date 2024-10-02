@@ -4,41 +4,27 @@
       <v-icon icon="mdi-magnify" size="25" v-bind="activatorProps" />
     </template>
     <template v-slot:default="{ isActive }">
-      <v-card class="d-flex flex-column justify-center align-center">
-        <v-container class="d-flex align-center justify-center w-50">
-          <v-text-field
-            placeholder="Search user"
-            color="surface-variant"
-            class="w-50 mt-2"
-            variant="underlined"
-            v-model="state.searchedUser"
-            @keyup.enter="getUser"
-          />
-          <v-icon icon="mdi-magnify" size="35" class="ml-5" @click="getUser" />
+      <v-card class="w-50 ml-15 mt-0">
+        <v-card-title>Search</v-card-title>
+        <v-divider />
+        <v-container class="d-flex justify-center align-center">
+          <input type="text" placeholder="Search" style="width: 80%;" v-model="state.searchedUser">
+          <v-icon icon="mdi-magnify" @click="getUser()"/>
+        </input>
         </v-container>
-        <v-card-text v-if="search" style="color: red; height: 300px">{{
-          errorMessage
-        }}</v-card-text>
+        <v-container v-if="state.filteredUser.length > 0">
+          Results for {{ state.searchedUser }}
+          <v-list>
+            <v-container v-for="userFound in state.filteredUser" class="d-flex flex-row">
+              <p class="hover" @click="navigateTo(`/user/${userFound.user}`)">{{ userFound.user }}</p>
+              <v-card-subtitle> - {{ userFound.posts.length }} posts</v-card-subtitle>
+            </v-container>
+          </v-list>
+        </v-container>
+        <v-container class="d-flex justify-center align-center" v-if="state.filteredUser.length === 0 && state.searchedUser.length > 3">
+          <p style="color: red;">{{ errorMessage }}</p>
+        </v-container>
       </v-card>
-      <v-card v-if="state.filteredUser" style="height: 300px">
-        <v-card-title>Results for {{ state.searchedUser }}</v-card-title>
-        <NuxtLink
-          v-for="userFound in state.filteredUser"
-          :key="userFound.id"
-          @click="navigateTo(`/user/${userFound.user}`)"
-        >
-          {{ userFound.user }}
-        </NuxtLink>
-      </v-card>
-      <v-container class="d-flex flex-row justify-end">
-        <v-btn
-          text="CLOSE"
-          @click="isActive.value = false"
-          variant="elevated"
-          color="error"
-          style="width: 25px"
-        />
-      </v-container>
     </template>
   </v-dialog>
 </template>

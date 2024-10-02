@@ -1,17 +1,14 @@
 <template>
-  <v-menu>
+  <v-menu offset-y :close-on-content-click="false">
     <template v-slot:activator="{ props: activatorProps }">
       <v-icon icon="mdi-menu" size="25" v-bind="activatorProps" />
     </template>
     <template v-slot:default="{ isActive }">
-      <v-menu>
-      <template v-slot:activator="{ props: openSettings }">
-        <v-list-item class="hover" v-bind="openSettings" @click="isActive.value = false; settingsOpened.value = true">
-          Swap theme
+      <v-list>
+        <v-list-item class="hover" @click="openSub = !openSub">
+          Settings
         </v-list-item>
-      </template>
-      <template v-slot:default="{ settingsOpened }">
-        <v-list-title> Settings </v-list-title>
+        <v-list-item>
           <v-switch
             @click="toggleTheme"
             :label="
@@ -19,16 +16,18 @@
                 ? 'Swap to lightmode'
                 : 'Swap to darkmode'
             "
-            class="ml-5"
+            class="ml-5 notHover"
             v-model="theme.global.current.value.dark"
+            v-if="openSub"
           />
-      </template>
-    </v-menu>
-        <v-list-item @click="logOutButton()" class="hover">
+        </v-list-item>
+        <v-list-item class="hover" @click="logOutButton()">
           Log out
         </v-list-item>
+      </v-list>
     </template>
   </v-menu>
+  <v-menu> </v-menu>
 </template>
 
 <script setup>
@@ -36,6 +35,7 @@ import { useTheme } from "vuetify";
 import { storeValue, getValue } from "~/composables/Functions";
 
 const theme = useTheme();
+const openSub = ref(false);
 const storedTheme = getValue("themeUser");
 
 onMounted(() => {
@@ -55,3 +55,9 @@ const toggleTheme = () => {
   storeValue("themeUser", newTheme);
 };
 </script>
+
+<style scoped>
+.notHover {
+  text-decoration: none;
+}
+</style>
