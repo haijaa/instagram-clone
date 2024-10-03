@@ -3,6 +3,7 @@
     <SideMenu />
     <slot />
   </div>
+
   <v-footer>
     <Footer class="foot" />
   </v-footer>

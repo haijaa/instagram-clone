@@ -1,8 +1,31 @@
 <template>
   <v-footer class="mt-auto">
-    <v-row justify="center" no-gutters>
+    <v-row justify="center" no-gutters class="hidden-sm-and-down">
       <v-col>
         <v-container class="d-flex w-100 align-center px-4 justify-center">
+          <NuxtLink
+            v-for="link in links"
+            :key="link"
+            class="mx-2"
+            @click="testButton()"
+            id="linksFooter"
+          >
+            <p>{{ link }}</p>
+          </NuxtLink>
+        </v-container>
+      </v-col>
+      <v-container class="d-flex flex-column justify-center align-center">
+        <v-row class="mb-1">
+          Contact Uploading & Non-Users - Meta Verified
+        </v-row>
+        <p>© {{ new Date().getFullYear() }} Instagram from Meta</p>
+      </v-container>
+    </v-row>
+    <v-row justify="center" no-gutters class="hidden-md-and-up">
+      <v-col>
+        <v-container
+          class="d-flex w-100 align-center px-4 justify-center flex-column"
+        >
           <NuxtLink
             v-for="link in links"
             :key="link"

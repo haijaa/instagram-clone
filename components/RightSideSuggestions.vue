@@ -50,7 +50,9 @@
         style="max-width: 257px; padding: 0; margin: 0"
       >
         <v-card-subtitle class="m-0 p-0">Suggestions for you </v-card-subtitle>
-        <p class="boldSmall">Show all</p>
+        <p class="boldSmall" @click="showSuggestions = !showSuggestions">
+          {{ showSuggestions ? "Hide all" : "Show all" }}
+        </p>
       </v-row>
     </v-row>
 
@@ -59,6 +61,7 @@
       style="min-width: 300px"
       v-for="(item, index) in userInformation"
       :key="index"
+      v-if="showSuggestions"
     >
       <v-row class="align-center">
         <img :src="item.profilePic" class="pic" />
@@ -78,6 +81,7 @@
 import { getValue } from "../composables/Functions";
 const userInformation = ref([]);
 const loggedInUser = ref([]);
+const showSuggestions = ref(true);
 
 const fetchUsers = async () => {
   const data = await $fetch(`/api/userDatabase`);
@@ -97,7 +101,7 @@ const fetchLoggedInUser = async () => {
 fetchLoggedInUser();
 </script>
 
-<style scoped>
+<style>
 .smallBlue {
   font-weight: bold;
   font-size: small;
@@ -109,6 +113,10 @@ fetchLoggedInUser();
   font-weight: bold;
   max-width: 80px;
   margin-right: 20px;
+}
+.boldSmall:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 .thinSmall {
   font-weight: thin;
