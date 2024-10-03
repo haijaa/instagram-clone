@@ -124,6 +124,7 @@
       </v-container>
     </v-card>
   </v-container>
+  <RightSideSuggestions />
 </template>
 
 <script setup>
