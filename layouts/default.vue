@@ -1,5 +1,6 @@
 <template>
   <div class="standard">
+    <Header />
     <SideMenu />
     <slot />
   </div>

@@ -1,7 +1,10 @@
 <template>
   <v-menu offset-y :close-on-content-click="false">
     <template v-slot:activator="{ props: activatorProps }">
-      <v-icon icon="mdi-menu" size="25" v-bind="activatorProps" />
+      <v-row>
+        <v-icon icon="mdi-menu" size="25" v-bind="activatorProps" />
+        <p class="hidden-sm-and-down ml-3">Settings</p>
+      </v-row>
     </template>
     <template v-slot:default="{ isActive }">
       <v-list>

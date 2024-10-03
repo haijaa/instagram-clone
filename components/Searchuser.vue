@@ -1,7 +1,10 @@
 <template>
   <v-dialog>
     <template v-slot:activator="{ props: activatorProps }">
+      <v-row>
       <v-icon icon="mdi-magnify" size="25" v-bind="activatorProps" />
+      <p class="hidden-sm-and-down ml-3">Search</p>
+    </v-row>
     </template>
     <template v-slot:default="{ isActive }">
       <v-card class="w-50 ml-15 mt-0">
