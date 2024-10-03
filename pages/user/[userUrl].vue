@@ -58,7 +58,8 @@
         <v-divider :thinckness="2" color="error"></v-divider>
         <div
           v-if="userPosts"
-          class="mt-10 ml-15 d-flex flex-row justify-center align-center flex-space-evenly"
+          class="mt-10 ml-15 d-flex flex-row justify-center align-center flex-space-evenly flex-wrap"
+          style="width: 60%"
         >
           <div
             id="allPosts"

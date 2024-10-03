@@ -1,5 +1,5 @@
 <template>
-  <v-container class="d-flex flex-column position-fixed">
+  <v-container class="d-flex flex-column position-fixed hidden-sm-and-down">
     <v-container class="d-flex flex-column flex-grow-0">
       <!-- <v-icon icon="mdi-instagram" @click="navigateTo(`/landingpage`)" /> -->
     </v-container>
@@ -34,4 +34,3 @@
 </template>
 
 <script setup></script>
-<!-- <p class="d-none d-md-flex d-lg-flex d-xl-flex ml-4">Post</p> -->

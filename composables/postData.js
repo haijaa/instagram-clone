@@ -95,6 +95,36 @@ const postData = {
           picture: postPicture,
           likes: 4552,
         },
+        {
+          caption: "ghfdfghdf",
+          picture: postPicture,
+          likes: 4345,
+        },
+        {
+          caption: "ytursdfasdf!",
+          picture: postPicture,
+          likes: 12312,
+        },
+        {
+          caption: "lhjkhjkhjk!",
+          picture: postPicture,
+          likes: 99999,
+        },
+        {
+          caption: "udfhgisdhfg!",
+          picture: postPicture,
+          likes: 35685,
+        },
+        {
+          caption: "psaåpdååpå!",
+          picture: postPicture,
+          likes: 456789,
+        },
+        {
+          caption: "usch!",
+          picture: postPicture,
+          likes: 132123,
+        },
       ],
     },
   ],
