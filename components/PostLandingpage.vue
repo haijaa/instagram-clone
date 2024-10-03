@@ -124,7 +124,6 @@
       </v-container>
     </v-card>
   </v-container>
-  <RightSideSuggestions />
 </template>
 
 <script setup>
@@ -141,7 +140,7 @@ const invalidUserComment = ref(false);
 const activePostId = ref(null);
 const logInPrompt = ref(false);
 const likedPosts = reactive({});
-const userInformation = ref([]);
+// const userInformation = ref([]);
 
 const userInput = reactive({
   commentContent: "",

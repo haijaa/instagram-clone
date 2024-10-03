@@ -1,5 +1,5 @@
 import postPicture from "../assets/images/picture-post.png";
-import profileImage from "../../assets/images/elefant.png";
+import profileImage from "../assets/images/elefant.png";
 
 const postData = {
   users: [
