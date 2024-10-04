@@ -130,6 +130,7 @@
   </v-container>
   <RightSideSuggestions class="hidden-sm-and-down mt-7" />
 </v-container>
+<Footer class="footer"/>
 </template>
 
 <script setup>
@@ -213,3 +214,10 @@ defineProps({
   userInformation: String,
 });
 </script>
+
+<style>
+.footer {
+  width: 100%;
+  margin-left: 150px
+}
+</style>
