@@ -2,10 +2,10 @@
   <v-container class="d-flex flex-column justify-space-between" min-height="150px" max-width="80%" >
     
     <div class="storiescontainer overflow-auto">
-      <p v-show="isMdAndUp">For you | Feed</p>
+      <p class="hidden-sm-and-down">For you | Feed</p>
     <v-menu v-show="isSmAndDown">
       <template v-slot:activator="{ props: activatorprops }">
-        <p v-bind="activatorprops" class="hover">
+        <p v-bind="activatorprops" class="hover hidden-md-and-up">
           For you <v-icon icon="mdi-arrow-down" size="15" />
         </p>
       </template>
@@ -48,6 +48,7 @@ const isSmAndDown = computed(() => display.smAndDown);
   margin: 0;
   padding: 0;
   margin-top: 10px;
+  margin-right: 5px;
   display: flex;
   flex-direction: column;
 }
