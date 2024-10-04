@@ -1,8 +1,7 @@
 <template>
   <NuxtLayout>
-    <v-container class="d-flex">
+    <v-container class="d-flex flex-column justify-center align-center">
       <PostLandingpage />
-      <RightSideSuggestions class="hidden-sm-and-down" />
     </v-container>
   </NuxtLayout>
 </template>

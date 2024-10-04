@@ -1,6 +1,8 @@
 <template>
-  <v-container class="h-25 d-flex flex-column justify-space-between">
-    <p v-show="isMdAndUp">For you | Feed</p>
+  <v-container class="d-flex flex-column justify-space-between" min-height="150px" max-width="80%" >
+    
+    <div class="storiescontainer overflow-auto">
+      <p v-show="isMdAndUp">For you | Feed</p>
     <v-menu v-show="isSmAndDown">
       <template v-slot:activator="{ props: activatorprops }">
         <p v-bind="activatorprops" class="hover">
@@ -11,14 +13,16 @@
         <v-list-item>Feed</v-list-item>
       </template>
     </v-menu>
-    <div class="storiescontainer overflow-auto">
-      <v-col v-for="content in post.users" class="storCol">
+    <v-divider />
+   <v-container class="d-flex">
+      <v-container v-for="content in post.users" class="storiesSmallContainer">
         <img
           :src="content.profilePic"
           style="width: 50px; height: 45px; border-radius: 50%"
         />
-        <p class="thinSmall" style="max-width: 25px">{{ content.user }}</p>
-      </v-col>
+        <p class="thinSmall" style="max-width: 25px">{{ content.user }}</p>  
+      </v-container>
+    </v-container>
     </div>
   </v-container>
 </template>
@@ -36,13 +40,15 @@ const isSmAndDown = computed(() => display.smAndDown);
 <style>
 .storiescontainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
-.storCol {
+.storiesSmallContainer {
   flex-grow: 0;
   margin: 0;
   padding: 0;
   margin-top: 10px;
-  margin-right: 25px;
+  display: flex;
+  flex-direction: column;
 }
 </style>

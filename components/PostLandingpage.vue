@@ -1,5 +1,7 @@
 <template>
-  <v-container class="d-flex">
+  <v-container class="d-flex" style="width: 100vw;">
+  <v-container class="d-flex flex-column" style="width: 80%;">
+  <Header />
     <UserLoggedInControl v-if="logInPrompt" />
 
     <v-container
@@ -126,6 +128,8 @@
       </v-card>
     </v-container>
   </v-container>
+  <RightSideSuggestions class="hidden-sm-and-down mt-7" />
+</v-container>
 </template>
 
 <script setup>
