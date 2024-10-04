@@ -1,3 +1,4 @@
 <template>
-  <SmallScreenFooter />
+  <!-- <SmallScreenFooter /> -->
+  <RightSideSuggestions />
 </template>

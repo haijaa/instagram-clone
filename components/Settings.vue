@@ -30,9 +30,7 @@
       </v-list>
     </template>
   </v-menu>
-  <v-menu> </v-menu>
 </template>
-
 <script setup>
 import { useTheme } from "vuetify";
 import { storeValue, getValue } from "~/composables/Functions";

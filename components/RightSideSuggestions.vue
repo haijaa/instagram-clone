@@ -1,44 +1,15 @@
 <template>
-  <!--   <v-container style="width: 300px">
-    <v-container
-      class="d-flex align-center justify-space-between"
-      style="margin: 0; padding: 0; height: 100px"
-    >
-      <v-container class="d-flex align-center" style="margin: 0; padding: 0">
-        <img
-          :src="loggedInUser.profilePic"
-          width="40"
-          height="30"
-          style="border-radius: 50%"
-        />
-        <v-container class="d-flex flex-column">
-          <p class="boldSmall">
-            {{ loggedInUser.username }}
-          </p>
-          <p class="thinSmall">
-            {{ loggedInUser.fullname }}
-          </p>
-        </v-container>
-      </v-container>
-      <v-container class="d-flex flex-end">
-        <p class="smallBlue">
-          Switch
-        </p>
-      </v-container>
-    </v-container>
-    <v-container style="margin: 0; padding: 0; width: 400px; height: 100px">
-      <v-row class="align-center justify-space-between"
-        ><v-card-subtitle>Suggestions for you</v-card-subtitle>
-        <p>Show all</p></v-row
-      >
-    </v-container>
-  </v-container> -->
   <v-container style="max-width: 310px">
     <v-row>
       <v-row class="align-center">
         <img :src="loggedInUser.profilePic" class="pic" />
         <v-col>
-          <p class="boldSmall">{{ loggedInUser.username }}</p>
+          <p
+            class="boldSmall"
+            @click="navigateTo(`/user/${loggedInUser.username}`)"
+          >
+            {{ loggedInUser.username }}
+          </p>
           <p class="thinSmall">{{ loggedInUser.fullname }}</p>
         </v-col>
       </v-row>
@@ -66,12 +37,19 @@
       <v-row class="align-center">
         <img :src="item.profilePic" class="pic" />
         <v-col style="width: 110px">
-          <p class="boldSmall">{{ item.username }}</p>
+          <p
+            class="boldSmall"
+            @click="navigateTo(`/user/${loggedInUser.username}`)"
+          >
+            {{ item.username }}
+          </p>
           <p class="thinSmall">{{ item.fullname }}</p>
         </v-col>
       </v-row>
       <v-col style="width: 75px">
-        <p class="smallBlue">Follow</p>
+        <p class="smallBlue" @click="followedOrNot = !followedOrNot">
+          {{ followedOrNot ? "Follow" : "Unfollow" }}
+        </p>
       </v-col>
     </v-row>
   </v-container>
@@ -81,6 +59,7 @@
 import { getValue } from "../composables/Functions";
 const userInformation = ref([]);
 const loggedInUser = ref([]);
+const followedOrNot = ref(true);
 const showSuggestions = ref(true);
 
 const fetchUsers = async () => {
@@ -107,6 +86,10 @@ fetchLoggedInUser();
   font-size: small;
   color: #4cb5f9;
   max-width: 50px;
+}
+.smallBlue:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 .boldSmall {
   font-size: small;

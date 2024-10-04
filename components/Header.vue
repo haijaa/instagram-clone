@@ -1,8 +1,17 @@
 <template>
   <v-container class="h-25 d-flex flex-column justify-space-between">
-    For you | Feed
-    <v-divider />
-    <div class="storiescontainer">
+    <p v-show="isMdAndUp">For you | Feed</p>
+    <v-menu v-show="isSmAndDown">
+      <template v-slot:activator="{ props: activatorprops }">
+        <p v-bind="activatorprops" class="hover">
+          For you <v-icon icon="mdi-arrow-down" size="15" />
+        </p>
+      </template>
+      <template v-slot:default="{ isActive }">
+        <v-list-item>Feed</v-list-item>
+      </template>
+    </v-menu>
+    <div class="storiescontainer overflow-auto">
       <v-col v-for="content in post.users" class="storCol">
         <img
           :src="content.profilePic"
@@ -15,8 +24,13 @@
 </template>
 
 <script setup>
+import { useDisplay } from "vuetify";
 import { usePost } from "../composables/postData";
 const post = usePost();
+const display = useDisplay();
+
+const isMdAndUp = computed(() => display.mdAndUp);
+const isSmAndDown = computed(() => display.smAndDown);
 </script>
 
 <style>
