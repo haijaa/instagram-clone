@@ -13,11 +13,11 @@ const postData = {
           picture: postPicture,
           likes: 1354,
         },
-        {
+        /*         {
           caption: "Same pic different day",
           picture: postPicture,
           likes: 47,
-        },
+        }, */
       ],
     },
     {
@@ -30,11 +30,11 @@ const postData = {
           picture: postPicture,
           likes: 434,
         },
-        {
+        /*         {
           caption: "Yepp, new pic",
           picture: postPicture,
           likes: 12,
-        },
+        }, */
       ],
     },
     {
@@ -95,7 +95,7 @@ const postData = {
           picture: postPicture,
           likes: 4552,
         },
-        {
+        /*         {
           caption: "ghfdfghdf",
           picture: postPicture,
           likes: 4345,
@@ -124,7 +124,7 @@ const postData = {
           caption: "usch!",
           picture: postPicture,
           likes: 132123,
-        },
+        }, */
       ],
     },
   ],

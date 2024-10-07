@@ -28,13 +28,9 @@
 
         <!-- Andra komponenter kan inkluderas här -->
         <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
+        <Stories />
       </v-container>
     </v-main>
-
     <!-- Använd `v-footer` om du har en footer -->
     <v-footer app>
       <span>Footer content here</span>
@@ -44,8 +40,8 @@
 
 <script>
 export default {
-  name: 'YourComponentName',
-}
+  name: "YourComponentName",
+};
 </script>
 
 <style scoped>

@@ -42,7 +42,24 @@
                 <MenuCog v-if="sharedState.userName === userFound.username" />
               </v-row>
               <v-row v-else>
-                <v-btn text="FOLLOW" class="ml-10" />
+                <v-btn
+                  v-if="followedOrNot"
+                  text="FOLLOW"
+                  class="ml-10"
+                  @click="followedOrNot = !followedOrNot"
+                >
+                  {{ followedOrNot ? "FOLLOW" : "FOLLOWING" }}
+                </v-btn>
+                <v-btn
+                  v-if="!followedOrNot"
+                  text="FOLLOWING"
+                  color="success"
+                  class="ml-10"
+                  @click="followedOrNot = !followedOrNot"
+                >
+                  {{ followedOrNot ? "FOLLOW" : "FOLLOWING" }}
+                  <v-icon icon="mdi-check" />
+                </v-btn>
                 <v-btn text="Message" class="ml-2" />
               </v-row>
             </v-row>
@@ -99,12 +116,14 @@
       </div>
     </v-col>
   </NuxtLayout>
-  <Footer class="footer"/>
+  <Footer class="footer" />
 </template>
 
 <script setup>
-import { getValue, isUserLoggedIn } from "~/composables/Functions";
+import { get } from "@vueuse/core";
+import { storeValue, getValue, isUserLoggedIn } from "~/composables/Functions";
 
+const followedOrNot = ref(true);
 const logInPrompt = ref(false);
 const route = useRoute();
 const post = usePost();
@@ -155,6 +174,6 @@ isUserLoggedIn(sharedState.userName, logInPrompt);
 
 .footer {
   width: 100%;
-  margin-left: 60px
+  margin-left: 60px;
 }
 </style>

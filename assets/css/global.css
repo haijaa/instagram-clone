@@ -3,9 +3,15 @@
   text-decoration: underline;
 }
 
-@media (min-width: 960px) {
+.hoverNotUnderline:hover {
+  cursor: pointer;
+}
 
+.kort {
+  background-color: #ededed;
+}
+
+@media (min-width: 960px) {
 }
 @media (min-width: 1280px) {
-
 }

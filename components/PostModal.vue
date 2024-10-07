@@ -17,7 +17,7 @@
         >
         <v-divider class="mb-10" />
         <v-container
-          class="d-flex align-center justify-center flex-column mt-10"
+          class="d-flex align-center justify-center flex-column mt-8"
         >
           <v-container class="align-center d-flex justify-center">
             <v-icon icon="mdi-image-multiple" size="55" />

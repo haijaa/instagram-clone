@@ -22,10 +22,7 @@
           v-for="content in post.users"
           class="storiesSmallContainer"
         >
-          <img
-            :src="content.profilePic"
-            style="width: 50px; height: 45px; border-radius: 50%"
-          />
+          <img :src="content.profilePic" class="profilePicStories" />
           <p class="thinSmall" style="max-width: 25px">
             {{ shortenName(content.user) }}
           </p>
@@ -43,17 +40,17 @@ const display = useDisplay();
 
 const isMdAndUp = computed(() => display.mdAndUp);
 const isSmAndDown = computed(() => display.smAndDown);
+
 const shortenName = (name) => {
   return name.length > 6 ? name.substring(0, 6) + ".." : name;
+};
+
+const provaFunktion = () => {
+  console.log("Du har klickat på");
 };
 </script>
 
 <style>
-.storiescontainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 .storiesSmallContainer {
   flex-grow: 0;
   margin: 0;
@@ -64,5 +61,21 @@ const shortenName = (name) => {
   flex-direction: column;
   justify-content: center;
   align-items: start;
+}
+
+.profilePicStories {
+  width: 55px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(
+        90deg,
+        rgb(251, 221, 73),
+        rgb(255, 129, 3),
+        rgb(226, 0, 163)
+      )
+      border-box;
 }
 </style>
