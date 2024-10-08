@@ -21,3 +21,19 @@ export const isUserLoggedIn = (namevalue, statusvalue) => {
     statusvalue.value = true;
   }
 };
+
+export const openDialog = (state, startingValue, buffer) => {
+  state = true;
+  startingValue = 0;
+  buffer = 0;
+
+  let progressInterval = setInterval(() => {
+    if (startingValue >= 100) {
+      clearInterval(progressInterval);
+      state = false;
+    } else {
+      startingValue += 1;
+      buffer = startingValue + 1;
+    }
+  }, 100);
+};

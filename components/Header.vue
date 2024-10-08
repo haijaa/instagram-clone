@@ -22,7 +22,16 @@
           v-for="content in post.users"
           class="storiesSmallContainer"
         >
-          <img :src="content.profilePic" class="profilePicStories" />
+          <img
+            :src="content.profilePic"
+            class="profilePicStories"
+            @click="
+              (e) => {
+                console.log('Bild klickad', e);
+                openDialog();
+              }
+            "
+          />
           <p class="thinSmall" style="max-width: 25px">
             {{ shortenName(content.user) }}
           </p>
@@ -35,6 +44,8 @@
 <script setup>
 import { useDisplay } from "vuetify";
 import { usePost } from "../composables/postData";
+import { useStories } from "../composables/HandleState";
+const dialog = useStories();
 const post = usePost();
 const display = useDisplay();
 
@@ -48,34 +59,25 @@ const shortenName = (name) => {
 const provaFunktion = () => {
   console.log("Du har klickat på");
 };
+
+const value = ref(0);
+const bufferValue = ref(0);
+
+const openDialog = () => {
+  dialog.value = true;
+  value.value = 0;
+  bufferValue.value = 0;
+
+  let progressInterval = setInterval(() => {
+    if (value.value >= 100) {
+      clearInterval(progressInterval);
+      dialog.value = false;
+    } else {
+      value.value += 1;
+      bufferValue.value = value.value + 1;
+    }
+  }, 100);
+};
 </script>
 
-<style>
-.storiesSmallContainer {
-  flex-grow: 0;
-  margin: 0;
-  padding: 0;
-  margin-top: 10px;
-  margin-right: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-}
-
-.profilePicStories {
-  width: 55px;
-  height: 50px;
-  cursor: pointer;
-  border-radius: 50%;
-  border: 4px solid transparent;
-  background: linear-gradient(white, white) padding-box,
-    linear-gradient(
-        90deg,
-        rgb(251, 221, 73),
-        rgb(255, 129, 3),
-        rgb(226, 0, 163)
-      )
-      border-box;
-}
-</style>
+<style></style>

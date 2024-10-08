@@ -1,32 +1,22 @@
 <template>
   <v-dialog v-model="dialog" max-width="500">
-    <template v-slot:activator="{ props: activatorProps }">
-      <v-btn
-        v-bind="activatorProps"
-        color="surface-variant"
-        text="Open Dialog"
-        variant="flat"
-        @click="openDialog"
-      >
-        Open Dialog
-      </v-btn>
-    </template>
-
     <template v-slot:default="{ isActive }">
       <v-container class="d-flex justify-center align-center">
         <v-icon
-          icon="mdi-arrow-left"
-          class="mr-2 hoverNotUnderline"
+          icon="mdi-arrow-left-circle"
+          class="mr-4 hoverNotUnderline"
           size="25"
+          color="white"
         />
         <v-card class="storyContainer">
           <v-container>
-            <p class="mt-2 ml-3 smallTextBold">Antkarl 24m sedan</p>
+            <p class="mt-2 ml-3 smallTextBold" style="color: white">
+              Antkarl 24m sedan
+            </p>
             <v-progress-linear
               :value="value"
               rounded
               :buffer-value="bufferValue"
-              color="white"
               style="background-color: black"
             />
           </v-container>
@@ -40,14 +30,19 @@
               "
               placeholder="Answer user.."
             />
-            <v-icon icon="mdi-heart-outline" class="mr-3 ml-3" />
-            <v-icon icon="mdi-send-outline" />
+            <v-icon
+              icon="mdi-heart-outline"
+              class="mr-3 ml-3"
+              style="color: white"
+            />
+            <v-icon icon="mdi-send-outline" style="color: white" />
           </v-container>
         </v-card>
         <v-icon
-          icon="mdi-arrow-right"
-          class="ml-2 hoverNotUnderline"
+          icon="mdi-arrow-right-circle"
+          class="ml-4 hoverNotUnderline"
           size="25"
+          color="white"
         />
       </v-container>
     </template>
@@ -55,27 +50,8 @@
 </template>
 
 <script setup>
-import imgStory from "../assets/images/picture-post.png";
-
-const dialog = ref(false);
-const value = ref(0);
-const bufferValue = ref(0);
-
-const openDialog = () => {
-  dialog.value = true;
-  value.value = 0;
-  bufferValue.value = 0;
-
-  let progressInterval = setInterval(() => {
-    if (value.value >= 100) {
-      clearInterval(progressInterval);
-      dialog.value = false;
-    } else {
-      value.value += 1;
-      bufferValue.value = value.value + 1;
-    }
-  }, 100);
-};
+import { useStories } from "../composables/HandleState";
+const dialog = useStories();
 </script>
 
 <style>

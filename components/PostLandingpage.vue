@@ -1,4 +1,5 @@
 <template>
+  <Stories />
   <v-container class="d-flex" style="width: 100vw">
     <v-container class="d-flex flex-column" style="width: 80%">
       <Header />
@@ -22,6 +23,8 @@
               <img
                 :src="content.profilePic"
                 style="width: 40px; height: 35px; border-radius: 50%"
+                v-bind:class="{ hasStory: content.story }"
+                @click="content.story ? openDialog() : null"
               />
               <v-card-title
                 style="font-size: medium"
@@ -149,6 +152,10 @@
 <script setup>
 import { usePost } from "../composables/postData";
 import { getValue, isUserLoggedIn } from "~/composables/Functions";
+import { useStories } from "../composables/HandleState";
+
+const dialog = useStories();
+
 const sharedState = inject("sharedState");
 
 const savedPost = reactive([]);
@@ -160,7 +167,6 @@ const invalidUserComment = ref(false);
 const activePostId = ref(null);
 const logInPrompt = ref(false);
 const likedPosts = reactive({});
-// const userInformation = ref([]);
 
 const userInput = reactive({
   commentContent: "",
@@ -226,15 +232,27 @@ const likePost = (postId) => {
 defineProps({
   userInformation: String,
 });
+
+const value = ref(0);
+const bufferValue = ref(0);
+
+const openDialog = () => {
+  dialog.value = true;
+  value.value = 0;
+  bufferValue.value = 0;
+
+  let progressInterval = setInterval(() => {
+    if (value.value >= 100) {
+      clearInterval(progressInterval);
+      dialog.value = false;
+    } else {
+      value.value += 1;
+      bufferValue.value = value.value + 1;
+    }
+  }, 100);
+};
+
+const checkForStory = () => {};
 </script>
 
-<style>
-.footer {
-  width: 100%;
-  margin-left: 150px;
-}
-
-.kort {
-  border: 1px, black;
-}
-</style>
+<style></style>

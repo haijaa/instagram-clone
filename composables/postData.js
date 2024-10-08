@@ -7,6 +7,7 @@ const postData = {
       id: 1,
       user: "antkarl",
       profilePic: profileImage,
+      story: true,
       posts: [
         {
           caption: "Just another day in paradise.",
@@ -24,6 +25,7 @@ const postData = {
       id: 2,
       user: "fridawikman",
       profilePic: profileImage,
+      story: false,
       posts: [
         {
           caption: "Hihi look at this.",
@@ -41,6 +43,7 @@ const postData = {
       id: 3,
       user: "manswikman",
       profilePic: profileImage,
+      story: true,
       posts: [
         {
           caption: "New day new swing.",
@@ -53,6 +56,7 @@ const postData = {
       id: 4,
       user: "qupex",
       profilePic: profileImage,
+      story: true,
       posts: [
         {
           caption: "A little vacation.",
@@ -65,6 +69,7 @@ const postData = {
       id: 5,
       user: "livskrafter",
       profilePic: profileImage,
+      story: false,
       posts: [
         {
           caption: "Amazing view.",
@@ -77,6 +82,7 @@ const postData = {
       id: 6,
       user: "memezar",
       profilePic: profileImage,
+      story: true,
       posts: [
         {
           caption: "would you look at this",
@@ -89,6 +95,7 @@ const postData = {
       id: 7,
       user: "9gag",
       profilePic: profileImage,
+      story: false,
       posts: [
         {
           caption: "usch!",
