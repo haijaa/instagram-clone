@@ -2,7 +2,6 @@
   <v-container
     class="d-flex flex-column justify-space-between"
     min-height="150px"
-    max-width="80%"
   >
     <div class="storiescontainer overflow-auto">
       <p class="hidden-sm-and-down">For you | Feed</p>
@@ -19,18 +18,13 @@
       <v-divider />
       <v-container class="d-flex">
         <v-container
-          v-for="content in post.users"
+          v-for="content in filteredPosts"
           class="storiesSmallContainer"
         >
           <img
             :src="content.profilePic"
             class="profilePicStories"
-            @click="
-              (e) => {
-                console.log('Bild klickad', e);
-                openDialog();
-              }
-            "
+            @click="openDialog()"
           />
           <p class="thinSmall" style="max-width: 25px">
             {{ shortenName(content.user) }}
@@ -75,6 +69,9 @@ const openDialog = () => {
     }
   }, 100);
 };
+
+const filteredPosts = post.users.filter((i) => i.story === true);
+console.log(filteredPosts, "här är filtrerade posts");
 </script>
 
 <style></style>

@@ -25,7 +25,12 @@
     >
       <img class="pic" :src="post.profilePic" />
       <v-col style="margin-left: 10px; padding: 0">
-        <p class="boldSmall">{{ item.username }}</p>
+        <p
+          class="boldSmall hover"
+          @click="navigateTo(`/user/${item.username}`)"
+        >
+          {{ item.username }}
+        </p>
         <v-card-subtitle style="margin: 0; padding: 0"
           >Active 3 hours ago</v-card-subtitle
         >
