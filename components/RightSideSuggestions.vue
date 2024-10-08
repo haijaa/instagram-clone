@@ -52,6 +52,17 @@
         </p>
       </v-col>
     </v-row>
+    <div style="margin-right: 50px">
+      <v-container
+        class="d-flex justify-start align-center flex-wrap mt-3"
+        style="min-width: 100px; padding: 0"
+      >
+        <p class="thinSmall" v-for="link in links">{{ link + "" }}·</p>
+      </v-container>
+      <v-container class="d-flex justify-start">
+        <p class="thinSmall">© 2024 Instagram from Meta</p>
+      </v-container>
+    </div>
   </v-container>
 </template>
 
@@ -61,6 +72,19 @@ const userInformation = ref([]);
 const loggedInUser = ref([]);
 const followedOrNot = ref(true);
 const showSuggestions = ref(true);
+
+const links = [
+  "About",
+  "Help",
+  "Press",
+  "API",
+  "Work",
+  "Integrity",
+  "Conditions",
+  "Location",
+  "Langugage",
+  "Meta verified",
+];
 
 const fetchUsers = async () => {
   const data = await $fetch(`/api/userDatabase`);
@@ -80,34 +104,4 @@ const fetchLoggedInUser = async () => {
 fetchLoggedInUser();
 </script>
 
-<style>
-.smallBlue {
-  font-weight: bold;
-  font-size: small;
-  color: #4cb5f9;
-  max-width: 50px;
-}
-.smallBlue:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-.boldSmall {
-  font-size: small;
-  font-weight: bold;
-  max-width: 80px;
-  margin-right: 20px;
-}
-.boldSmall:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-.thinSmall {
-  font-weight: thin;
-  font-size: small;
-}
-.pic {
-  width: 40px;
-  height: 30px;
-  border-radius: 50%;
-}
-</style>
+<style></style>

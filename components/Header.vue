@@ -45,6 +45,7 @@
 import { useDisplay } from "vuetify";
 import { usePost } from "../composables/postData";
 import { useStories } from "../composables/HandleState";
+
 const dialog = useStories();
 const post = usePost();
 const display = useDisplay();
@@ -54,10 +55,6 @@ const isSmAndDown = computed(() => display.smAndDown);
 
 const shortenName = (name) => {
   return name.length > 6 ? name.substring(0, 6) + ".." : name;
-};
-
-const provaFunktion = () => {
-  console.log("Du har klickat på");
 };
 
 const value = ref(0);
