@@ -87,12 +87,12 @@
               <div class="d-flex justify-end">
                 <v-icon
                   @click="savePost(content.id)"
-                  icon="mdi-folder-check"
+                  icon="mdi-bookmark"
                   v-if="savedPost[content.id]"
                 />
                 <v-icon
                   @click="savePost(content.id)"
-                  icon="mdi-folder-arrow-down-outline"
+                  icon="mdi-bookmark-outline"
                   v-else
                 />
               </div>
@@ -250,8 +250,6 @@ const openDialog = () => {
     }
   }, 100);
 };
-
-const checkForStory = () => {};
 </script>
 
 <style></style>

@@ -17,7 +17,7 @@
               :value="value"
               rounded
               :buffer-value="bufferValue"
-              style="background-color: black"
+              style="background-color: white"
             />
           </v-container>
           <v-container class="d-flex align-center justify-center mb-2">

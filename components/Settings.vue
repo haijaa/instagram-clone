@@ -11,7 +11,7 @@
         <v-list-item class="hover" @click="openSub = !openSub">
           Settings
         </v-list-item>
-        <v-list-item>
+        <v-list-item style="margin: 0; padding: 0; margin-right: 5px">
           <v-switch
             @click="toggleTheme"
             :label="

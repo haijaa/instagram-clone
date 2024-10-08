@@ -48,7 +48,7 @@ const postData = {
       story: true,
       posts: [
         {
-          caption: "New day new swing.",
+          caption: "My favourite bear, say HI!",
           picture:
             "https://m.media-amazon.com/images/I/91gbfULvW0L._AC_UF894,1000_QL80_.jpg",
           likes: 6567,
