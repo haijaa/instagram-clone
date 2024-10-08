@@ -1,5 +1,4 @@
 <template>
-  <Stories />
   <v-container class="d-flex" style="width: 100vw">
     <v-container class="d-flex flex-column" style="width: 80%">
       <Header />
@@ -24,7 +23,10 @@
                 :src="content.profilePic"
                 style="width: 40px; height: 35px; border-radius: 50%"
                 v-bind:class="{ hasStory: content.story }"
-                @click="content.story ? openDialog() : null"
+                @click="
+                  content.story ? openDialog() : null;
+                  getRightStory(content.id);
+                "
               />
               <v-card-title
                 style="font-size: medium"

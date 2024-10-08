@@ -1,18 +1,20 @@
 <template>
   <v-dialog v-model="dialog" max-width="500">
     <template v-slot:default="{ isActive }">
-      <v-container class="d-flex justify-center align-center">
+      <v-container class="d-flex justify-center align-center" v-for="(item, index) in props.storyPost" :key="index">
         <v-icon
           icon="mdi-arrow-left-circle"
           class="mr-4 hoverNotUnderline"
           size="25"
           color="white"
         />
-        <v-card class="storyContainer">
+        <v-card class="storyContainer" :style="{backgroundImage: `url(${item.stories[0].pic})`} ">
           <v-container>
-            <p class="mt-2 ml-3 smallTextBold" style="color: white">
-              Antkarl 24m sedan
+            <p class="mt-2 ml-3 smallTextBold d-flex flex-row justify-space-between" style="color: white">
+              {{ item.user }}
+              <p class="ml-3">24m sedan</p>
             </p>
+
             <v-progress-linear
               :value="value"
               rounded
@@ -50,7 +52,12 @@
 </template>
 
 <script setup>
-import { useStories } from "../composables/HandleState";
+import { usePost } from "../composables/postData";
+
+const props = defineProps({
+  storyPost: Object,
+});
+
 const dialog = useStories();
 </script>
 
@@ -59,13 +66,10 @@ const dialog = useStories();
   color: white;
 }
 
-.non-transparent-progress .v-progress-linear__bar {
-  opacity: 1 !important;
-}
-
 .storyContainer {
-  background-image: url("../assets/images/andraBild.png");
+  /* background-image: url("../assets/images/andraBild.png"); */
   background-size: cover;
+  background-repeat: no-repeat;
   width: 400px;
   height: 550px;
   display: flex;

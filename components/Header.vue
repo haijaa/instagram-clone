@@ -1,4 +1,5 @@
 <template>
+  <Stories :storyPost="storyPost" />
   <v-container
     class="d-flex flex-column justify-space-between"
     min-height="150px"
@@ -25,7 +26,10 @@
           <img
             :src="content.profilePic"
             class="profilePicStories"
-            @click="openDialog()"
+            @click="
+              openDialog();
+              getRightStory(content.id);
+            "
           />
           <p class="thinSmall" style="max-width: 25px">
             {{ shortenName(content.user) }}
@@ -37,6 +41,10 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  storyPost: Object,
+});
+
 import { useDisplay } from "vuetify";
 import { usePost } from "../composables/postData";
 import { useStories } from "../composables/HandleState";
@@ -44,6 +52,7 @@ import { useStories } from "../composables/HandleState";
 const dialog = useStories();
 const post = usePost();
 const display = useDisplay();
+const storyPost = ref([]);
 
 const isMdAndUp = computed(() => display.mdAndUp);
 const isSmAndDown = computed(() => display.smAndDown);
@@ -73,6 +82,13 @@ const openDialog = () => {
 
 const filteredPosts = post.users.filter((i) => i.story === true);
 console.log(filteredPosts, "här är filtrerade posts");
+
+const getRightStory = (postId) => {
+  if (postId) {
+    storyPost.value = filteredPosts.filter((i) => i.id === postId);
+    console.log(storyPost.value, "header");
+  }
+};
 </script>
 
 <style></style>
