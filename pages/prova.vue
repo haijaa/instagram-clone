@@ -7,6 +7,7 @@
 
     <!-- Använd `v-main` för att hantera huvudsektionen -->
     <v-main>
+      <DrawerMenuLeft />
       <v-container fluid>
         <!-- Här kan du placera din befintliga kod för navigation -->
         <v-bottom-navigation :elevation="0" grow>

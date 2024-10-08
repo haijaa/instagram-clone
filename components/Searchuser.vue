@@ -1,8 +1,8 @@
 <template>
   <v-dialog style="max-width: 500px;">
     <template v-slot:activator="{ props: activatorProps }">
-      <v-row>
-      <v-icon icon="mdi-magnify" size="25" v-bind="activatorProps" class="mb-2"/>
+      <v-row class="hoverNotUnderline" v-bind="activatorProps">
+      <v-icon icon="mdi-magnify" size="25" class="mb-2"/>
       <p class="hidden-sm-and-down ml-3">Search</p>
     </v-row>
     </template>

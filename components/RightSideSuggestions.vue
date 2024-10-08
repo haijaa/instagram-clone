@@ -91,7 +91,6 @@ const fetchUsers = async () => {
   const loginUsername = getValue("loginUsername");
   const remainingUsers = data.users.filter((i) => i.username !== loginUsername);
   userInformation.value = remainingUsers;
-  console.log(userInformation);
 };
 fetchUsers();
 

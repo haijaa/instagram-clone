@@ -1,10 +1,12 @@
 <template>
-  <div class="d-flex flex-row" style="height: 100vh; width: 100vw">
-    <SideMenu />
+  <SideMenu />
+  <v-container
+    class="d-flex"
+    style="height: 100vh; width: 100vw; margin: 0; padding: 0"
+  >
     <MessagesList />
-    <v-divider vertical class="ml-5" />
     <MessageContainer />
-  </div>
+  </v-container>
 </template>
 
 <script setup></script>

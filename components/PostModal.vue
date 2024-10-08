@@ -1,8 +1,8 @@
 <template>
   <v-dialog max-width="500">
     <template v-slot:activator="{ props: activatorProps }">
-      <v-row>
-        <v-icon icon="mdi-plus" size="25" v-bind="activatorProps" />
+      <v-row class="hoverNotUnderline" v-bind="activatorProps">
+        <v-icon icon="mdi-plus" size="25" />
         <p class="hidden-sm-and-down ml-3">Post</p>
       </v-row>
     </template>
