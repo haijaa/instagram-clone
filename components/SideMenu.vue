@@ -1,9 +1,7 @@
 <template>
   <v-container class="d-flex flex-column position-fixed hidden-sm-and-down">
-    <v-container class="d-flex flex-column flex-grow-0">
-      <!-- <v-icon icon="mdi-instagram" @click="navigateTo(`/landingpage`)" /> -->
-    </v-container>
-    <v-container class="d-flex flex-column flex-grow-1">
+    <v-container class="d-flex flex-column"> </v-container>
+    <v-container class="d-flex flex-column">
       <v-row>
         <v-icon
           icon="mdi-home-outline"
@@ -14,8 +12,16 @@
         <p class="hidden-sm-and-down ml-3">Home</p>
       </v-row>
       <Searchuser />
-
       <PostModal />
+      <v-row class="mt-5">
+        <v-icon
+          icon="mdi-email-fast-outline"
+          size="23"
+          style="margin-bottom: 10px"
+          @click="navigateTo(`/messages`)"
+        />
+        <p class="hidden-sm-and-down ml-3">Messages</p>
+      </v-row>
     </v-container>
     <v-col class="d-flex flex-column" style="margin-top: 450px">
       <v-row>

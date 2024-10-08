@@ -1,5 +1,5 @@
 <template>
-  <v-dialog>
+  <v-dialog style="max-width: 500px;">
     <template v-slot:activator="{ props: activatorProps }">
       <v-row>
       <v-icon icon="mdi-magnify" size="25" v-bind="activatorProps" class="mb-2"/>
@@ -7,7 +7,7 @@
     </v-row>
     </template>
     <template v-slot:default="{ isActive }">
-      <v-card class="w-50 ml-15 mt-0">
+      <v-card class="ml-15 mt-0">
         <v-card-title>Search</v-card-title>
         <v-divider />
         <v-container class="d-flex justify-center align-center">
