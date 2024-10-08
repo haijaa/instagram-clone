@@ -36,7 +36,6 @@
       <Settings />
     </v-col>
   </v-container>
-  <v-divider />
 </template>
 
 <script setup></script>

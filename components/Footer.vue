@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="mt-auto">
+  <v-footer class="mt-auto w-50">
     <v-row justify="center" no-gutters class="hidden-sm-and-down">
       <v-col>
         <v-container class="d-flex w-100 align-center px-4 justify-center">

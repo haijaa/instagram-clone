@@ -116,7 +116,6 @@
       </div>
     </v-col>
   </NuxtLayout>
-  <Footer class="footer" />
 </template>
 
 <script setup>
@@ -173,7 +172,7 @@ isUserLoggedIn(sharedState.userName, logInPrompt);
 }
 
 .footer {
-  width: 100%;
+  width: 70%;
   margin-left: 60px;
 }
 </style>

@@ -2,6 +2,7 @@
   <v-container
     class="d-flex flex-column justify-space-between"
     min-height="150px"
+    max-width="80%"
   >
     <div class="storiescontainer overflow-auto">
       <p class="hidden-sm-and-down">For you | Feed</p>
