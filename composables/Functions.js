@@ -37,3 +37,7 @@ export const openDialog = (state, startingValue, buffer) => {
     }
   }, 100);
 };
+
+export const nextStory = (array, id) => {
+  delete array[id];
+};
