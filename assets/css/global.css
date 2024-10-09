@@ -111,6 +111,17 @@
   z-index: 100;
 }
 
+.hoverBox {
+  width: 100px;
+  height: 40px;
+}
+
+.hoverBox:hover {
+  border: 1px, solid, black;
+  cursor: pointer;
+  border-top: 1px rgb(10, 10, 10) solid;
+}
+
 @media (min-width: 960px) {
 }
 @media (min-width: 1280px) {

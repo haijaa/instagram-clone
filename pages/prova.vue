@@ -26,21 +26,8 @@
             <span>Nearby</span>
           </v-btn>
         </v-bottom-navigation>
-
         <!-- Andra komponenter kan inkluderas här -->
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <RightSideSuggestions />
-        <ScrollToTopButton />
+        <SecondaryBarUserurl />
         <!-- <Stories /> -->
       </v-container>
     </v-main>
