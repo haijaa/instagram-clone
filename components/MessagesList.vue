@@ -9,7 +9,7 @@
       <v-col style="margin: 0; padding: 0">
         <img
           style="width: 60px; height: 50px; border-radius: 50%"
-          :src="post.profilePic"
+          :src="loggedInUser.profilePic"
         />
         <p class="thinSmall">Your note</p>
       </v-col>
@@ -23,7 +23,7 @@
       v-for="(item, index) in userInformation"
       :key="index"
     >
-      <img class="pic" :src="post.profilePic" />
+      <img class="pic" :src="item.profilePic" />
       <v-col style="margin-left: 10px; padding: 0">
         <p
           class="boldSmall hover"

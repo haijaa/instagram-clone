@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="500">
+  <v-dialog v-model="dialog" min-width="500">
     <template v-slot:default="{ isActive }">
       <v-container class="d-flex justify-center align-center" v-for="(item, index) in props.storyPost" :key="index">
         <v-icon
@@ -67,8 +67,8 @@ const dialog = useStories();
 }
 
 .storyContainer {
-  /* background-image: url("../assets/images/andraBild.png"); */
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
   background-repeat: no-repeat;
   width: 400px;
   height: 550px;
