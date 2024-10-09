@@ -104,6 +104,13 @@
   padding-top: 0;
 }
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  z-index: 100;
+}
+
 @media (min-width: 960px) {
 }
 @media (min-width: 1280px) {

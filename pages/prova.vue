@@ -7,7 +7,7 @@
 
     <!-- Använd `v-main` för att hantera huvudsektionen -->
     <v-main>
-      <DrawerMenuLeft />
+      <!-- <DrawerMenuLeft /> -->
       <v-container fluid>
         <!-- Här kan du placera din befintliga kod för navigation -->
         <v-bottom-navigation :elevation="0" grow>
@@ -29,7 +29,19 @@
 
         <!-- Andra komponenter kan inkluderas här -->
         <RightSideSuggestions />
-        <Stories />
+        <RightSideSuggestions />
+        <RightSideSuggestions />
+        <RightSideSuggestions />
+        <RightSideSuggestions />
+        <RightSideSuggestions />
+        <RightSideSuggestions />
+        <RightSideSuggestions />
+        <RightSideSuggestions />
+        <RightSideSuggestions />
+        <RightSideSuggestions />
+        <RightSideSuggestions />
+        <ScrollToTopButton />
+        <!-- <Stories /> -->
       </v-container>
     </v-main>
     <!-- Använd `v-footer` om du har en footer -->

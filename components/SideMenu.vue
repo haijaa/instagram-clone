@@ -1,10 +1,13 @@
 <template>
   <v-container
     class="d-flex flex-column justify-space-between position-fixed hidden-sm-and-down"
-    style="height: 100%"
+    style="height: 100%; max-width: 160px; z-index: 100"
   >
     <v-icon icon="mdi-instagram" size="25" />
-    <v-container class="d-flex flex-column">
+    <v-container
+      class="d-flex flex-column justify-space-evenly"
+      style="min-height: 300px"
+    >
       <v-row @click="navigateTo(`/landingpage`)" class="hoverNotUnderline">
         <v-icon icon="mdi-home-outline" size="25" style="margin-bottom: 10px" />
         <p class="hidden-sm-and-down ml-3">Home</p>
@@ -20,10 +23,7 @@
         <p class="hidden-sm-and-down ml-3">Messages</p>
       </v-row>
     </v-container>
-    <v-container
-      class="d-flex flex-column justify-end"
-      style="margin-bottom: 200px"
-    >
+    <v-container class="d-flex flex-column justify-end">
       <v-row class="hoverNotUnderline" @click="alert('Du har klickat!')">
         <v-icon icon="mdi-at" size="25" class="mb-3" />
         <p class="hidden-sm-and-down ml-3">Threads</p>

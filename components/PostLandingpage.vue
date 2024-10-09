@@ -148,6 +148,8 @@
     </v-container>
     <RightSideSuggestions class="hidden-sm-and-down mt-7" />
   </v-container>
+
+  <ScrollToTopButton />
 </template>
 
 <script setup>

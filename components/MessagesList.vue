@@ -1,5 +1,5 @@
 <template>
-  <div class="w-25 ml-5" style="min-width: 200px">
+  <div class="w-25" style="min-width: 200px; /* margin-left: 150px */">
     <v-row class="d-flex justify-space-between mt-5">
       <p>{{ loggedInUser.username }}<v-icon icon="mdi-chevron-down" /></p>
 
