@@ -1,7 +1,8 @@
 <template>
+  <SideMenu style="min-width: 160px;"/>
   <div class="standard">
-    <SideMenu />
     <slot />
+    <ScrollToTopButton />
   </div>
   <v-footer>
     <Footer />

@@ -1,7 +1,7 @@
 <template>
   <UserLoggedInControl v-if="logInPrompt" />
   <NuxtLayout>
-    <v-col>
+    <v-col style="width: 60%;">
       <div
         v-if="status === 'pending'"
         class="d-flex justify-center align-center"
@@ -96,7 +96,7 @@
                   id="picturePost"
                   class="d-flex align-center justify-center"
                 >
-                  <p v-if="isHovering" id="cardLikes">
+                  <p v-if="isHovering" id="cardLikes" >
                     <v-icon icon="mdi-heart-outline" />{{ post.likes }}
                   </p>
                 </v-img>

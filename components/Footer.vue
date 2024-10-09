@@ -1,6 +1,6 @@
 <template>
   <v-footer class="mt-auto w-50">
-    <v-row justify="center" no-gutters class="hidden-sm-and-down">
+    <v-col justify="center" no-gutters class="hidden-sm-and-down">
       <v-col>
         <v-container class="d-flex w-100 align-center px-4 justify-center">
           <NuxtLink
@@ -20,7 +20,7 @@
         </v-row>
         <p>© {{ new Date().getFullYear() }} Instagram from Meta</p>
       </v-container>
-    </v-row>
+    </v-col>
     <v-row justify="center" no-gutters class="hidden-md-and-up">
       <v-col>
         <v-container

@@ -2,7 +2,7 @@
   <v-container class="d-flex flex-column" style="width: 60%;">
     <div class="d-flex justify-start align-center mb-2">
       <div class="d-flex flex-column align-center mb-10 mt-10">
-        <v-icon icon="mdi-plus-circle-outline" color="grey" size="70" />
+        <v-icon icon="mdi-plus-circle-outline" color="grey" size="70" class="hoverNotUnderline"/>
         <p class="thinSmall">New</p>
       </div>
     </div>

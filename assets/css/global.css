@@ -4,7 +4,11 @@
   font-family: "Montserrat", sans-serif;
 }
 
-.standard {}
+.standard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .hover:hover {
   cursor: pointer;
