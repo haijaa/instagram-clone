@@ -13,6 +13,8 @@
       <div
         v-else-if="userFound"
         class="d-flex justfiy-center align-center flex-column"
+        style="min-height: 1080px;"
+        
       >
         <div
           style="margin-top: 100px"
@@ -68,7 +70,7 @@
               <p class="ml-5">{{ userFound.page.following }} following</p>
             </v-row>
             <v-row class="mt-7 d-flex flex-start">
-              <strong>{{ userFound.page.presentation }}</strong>
+              <p class="thinSmall">{{ userFound.page.presentation }}</p>
             </v-row>
           </div>
         </div>
@@ -85,7 +87,7 @@
             :key="index"
           >
             <v-hover v-slot="{ isHovering, props }">
-              <div style="height: 300px; width: 300px; margin: 25px">
+              <div style="max-height: 300px; max-width: 300px; margin: 25px">
                 <v-img
                   :class="{ 'on-hover': isHovering }"
                   v-bind="props"
