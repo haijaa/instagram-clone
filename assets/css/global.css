@@ -3,6 +3,9 @@
 * {
   font-family: "Montserrat", sans-serif;
 }
+
+.standard {}
+
 .hover:hover {
   cursor: pointer;
   text-decoration: underline;
