@@ -1,13 +1,10 @@
-import connectionMySQL from '../connectionMySQL.js';
+import connectionMySQL from "../connectionMySQL.js";
 
 export const getUsers = async (req, res) => {
-  const sql = 'SELECT * FROM users';
   try {
-    const [results] = await connectionMySQL.query(sql);
-    res.json(results);
+    const [rows, fields] = await connectionMySQL.query("SELECT * FROM users");
+    res.json(rows);
   } catch (error) {
-    return res.status(500).json({
-      error: error.message,
-    });
+    res.status(500).json({ error: error.message });
   }
 };
