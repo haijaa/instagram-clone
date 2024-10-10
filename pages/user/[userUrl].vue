@@ -1,7 +1,7 @@
 <template>
   <UserLoggedInControl v-if="logInPrompt" />
   <NuxtLayout>
-    <v-col style="width: 60%;">
+    <v-col style="width: 50%;">
       <div
         v-if="status === 'pending'"
         class="d-flex justify-center align-center"
@@ -75,19 +75,22 @@
           </div>
         </div>
         <SecondaryBarUserurl />
+        <v-container style="padding: 0; margin: 0; width: auto;"
+        class="d-flex justify-space-between">
         <div
           v-if="userPosts"
-          class="mt-10 ml-15 d-flex flex-row justify-center align-center flex-space-evenly flex-wrap"
-          style="width: 60%"
+          class="mt-10 d-flex flex-row justify-center align-center flex-space-evenly"
+          
         >
           <div
             id="allPosts"
             v-for="(post, index) in userPosts"
-            class="d-flex flex-column justify-space-evenly align-center"
+            class="d-flex justify-space-evenly align-center flex-start"
             :key="index"
+            
           >
             <v-hover v-slot="{ isHovering, props }">
-              <div style="max-height: 300px; max-width: 300px; margin: 25px">
+              <div>
                 <v-img
                   :class="{ 'on-hover': isHovering }"
                   v-bind="props"
@@ -107,6 +110,7 @@
             </v-hover>
           </div>
         </div>
+      </v-container>
       </div>
       <div
         v-else

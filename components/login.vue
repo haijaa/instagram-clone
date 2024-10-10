@@ -1,6 +1,6 @@
 <template>
   <v-container class="d-flex justify-center align-center flex-column">
-    <v-card class="w-50 d-flex justify-center flex-column">
+    <v-card class="w-50 d-flex justify-center flex-column" max-width="500">
       <v-col>
         <v-card-title class="d-flex align-center justify-center">
           <img src="/assets/images/logo-login.png" alt="instagram-logo" />

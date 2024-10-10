@@ -104,7 +104,7 @@
               gillat detta inlägg.
             </v-card-text>
             <v-card-text>
-              <strong>{{ content.user }}: </strong>
+              <strong @click="navigateTo(`/user/${content.user}`)" class="hoverNotUnderline">{{ content.user }}: </strong>
               {{ postContent.caption }}
             </v-card-text>
           </v-container>
@@ -118,7 +118,7 @@
               style="max-width: 350px"
             >
               <p>
-                <strong>{{ singleComment.user }}: </strong
+                <strong @click="navigateTo(`/user/${singleComment.user}`)" class="hoverNotUnderline">{{ singleComment.user }}: </strong
                 >{{ singleComment.comment }}
               </p>
             </div>

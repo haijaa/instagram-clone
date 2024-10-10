@@ -1,6 +1,7 @@
 <template>
   <v-container
-    class="d-flex align-center justify-center flex-column flex-grow-1"
+    class="d-flex align-center justify-center flex-column"
+    
   >
     <v-card-title>Your messages </v-card-title>
     <v-card-subtitle class="mt-3"

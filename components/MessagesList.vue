@@ -22,8 +22,9 @@
       class="d-flex align-center justify-start mt-5"
       v-for="(item, index) in userInformation"
       :key="index"
+      style="min-height: 50px;"
     >
-      <img class="pic" :src="item.profilePic" />
+      <img style="height: 40px; width: 40px; border-radius: 50%; margin-right: 5px;" :src="item.profilePic" />
       <v-col style="margin-left: 10px; padding: 0">
         <p
           class="boldSmall hover"
