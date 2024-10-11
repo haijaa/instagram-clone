@@ -6,6 +6,7 @@ USE instagram_clone;
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(50) UNIQUE NOT NULL,
+  fullname VARCHAR(50),
   email VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
   avatar_url VARCHAR(255),
@@ -22,6 +23,14 @@ CREATE TABLE posts (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE stories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE comments (
@@ -52,8 +61,6 @@ CREATE TABLE follows (
   FOREIGN KEY (following_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-SELECT * FROM users;
-
 SELECT
   posts.id AS post_id,
   posts.caption,
@@ -63,3 +70,43 @@ SELECT
   (SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id) AS total_likes
 FROM posts
 JOIN users ON posts.user_id = users.id;
+
+SELECT @@global.time_zone, @@session.time_zone;
+SET GLOBAL time_zone = 'Europe/Stockholm';
+SET SESSION time_zone = 'Europe/Stockholm';
+SET GLOBAL time_zone = '+00:00';
+
+-- Users --
+    -- 1 GET
+SELECT * FROM users;
+    -- 2 CREATE
+INSERT INTO users(username, fullname, email, password, bio) VALUES
+('antkarl', 'Anton Karlsson', 'email@email.com','password123', 'A.Karlsson' ),
+('fridawikman', 'Frida Wikman', 'frida@email.com', 'losenord123', 'F.Wikman'),
+('9gag', 'John Doe', '9gag@email.com', '9gag123', 'J.Doe'),
+('memezar', 'Elon Musk', 'meme@email.com', 'meme123', 'E.Musk'),
+('javascript.js', 'Who Knows', 'js@email.com', 'js123', 'W.Knows'),
+('vuejsofficial', 'Dan Veloper', 'vue@email.com', 'vue123', 'D.Veloper');
+
+    -- 3 CHANGE
+UPDATE users
+SET username = 'fridawikman1'
+WHERE id=3;
+
+    -- 4 DELETE
+DELETE FROM users WHERE id=2;
+
+-- Posts --
+
+    -- 1 GET
+SELECT * FROM posts;
+
+    -- 2 CREATE
+INSERT INTO posts (user_id, caption, image_url) VALUES
+('1', 'New day new ninja!', 'https://thumbs.dreamstime.com/b/tecknad-film-ninja-34738465.jpg');
+INSERT INTO posts (user_id, caption, image_url) VALUES
+('2', 'Best series I ever watched!', 'https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/77B5EA539F776F9A0EA1A9894A7E049213CFEEF5B775DF163F92A2C0E6C9521E/scale?width=1200&aspectRatio=1.78&format=webp');
+INSERT INTO posts (user_id, caption, image_url) VALUES
+('3', 'Welcome to our page!', 'https://play-lh.googleusercontent.com/AbCuaWJdYD4BaSKZ5tk5xriGE8sfLERTOrIGgUhPK9vTFpjZgjODK-2nHBIpPh3Ojw');
+
+    -- 3 Delete
