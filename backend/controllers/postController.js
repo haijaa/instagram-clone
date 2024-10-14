@@ -46,3 +46,25 @@ export const newPosts = async (req, res) => {
     });
   }
 };
+
+export const getPostsWithComments = async (req, res) => {
+  try {
+    const [rows, fields] = await connectionMySQL.query(
+      "SELECT posts.id AS post_id, posts.caption, posts.image_url, posts.created_at, post_user.username AS post_username, JSON_ARRAYAGG(JSON_OBJECT('comment_id', comments.id, 'comment_content', comments.content,'comment_created_at', comments.created_at,'comment_author', users.username)) AS comments FROM posts LEFT JOIN users AS post_user ON posts.user_id = post_user.id LEFT JOIN comments ON posts.id = comments.post_id LEFT JOIN users ON comments.user_id = users.id GROUP BY posts.id"
+    );
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getPostsWithCommentsOnId = async (req, res) => {
+  const { post_id } = req.params;
+  let sql = `SELECT posts.id AS post_id, posts.caption, posts.image_url, posts.created_at, post_user.username AS post_username, JSON_ARRAYAGG(JSON_OBJECT('comment_id', comments.id, 'comment_content', comments.content,'comment_created_at', comments.created_at,'comment_author', users.username)) AS comments FROM posts LEFT JOIN users AS post_user ON posts.user_id = post_user.id LEFT JOIN comments ON posts.id = comments.post_id LEFT JOIN users ON comments.user_id = users.id WHERE posts.id = ? GROUP BY posts.id;`;
+  try {
+    const [rows, fields] = await connectionMySQL.query(sql, [post_id]);
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
