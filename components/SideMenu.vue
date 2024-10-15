@@ -28,7 +28,6 @@
         <v-icon icon="mdi-at" size="25" class="mb-3" />
         <p class="hidden-sm-and-down ml-3">Threads</p>
       </v-row>
-      <p @click="navigateTo(`/prova`)">Prova</p>
       <Settings />
     </v-container>
   </v-container>

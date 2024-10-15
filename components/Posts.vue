@@ -8,8 +8,12 @@
     <v-col class="d-flex flex-column justify-center">
       <v-row class="mb-5 justify-space-between">
         <div class="d-flex align-center">
-          <img :src="item.avatar_url" class="profilePicPosts" />
-          <p class="boldSmall" style="max-width: 100%">
+          <img :src="item.user_avatar" class="profilePicPosts" />
+          <p
+            class="boldSmall"
+            style="max-width: 100%"
+            @click="navigateTo(`/user/${item.post_username}`)"
+          >
             {{ item.post_username }}
           </p>
           <p class="thinSmall">• {{ timeSince(item.created_at) }}</p>
@@ -117,7 +121,9 @@ const fetchPosts = async () => {
   try {
     const data = await $fetch("http://localhost:3001/postsWithComments");
     if (data) {
-      allPosts.value = data;
+      allPosts.value = data.sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+      );
       console.log(allPosts.value, "här är det.");
     }
   } catch (error) {
@@ -140,7 +146,6 @@ const fetchWithId = async (postId) => {
 };
 
 isUserLoggedIn(sharedState.userName, logInPrompt);
-console.log(sharedState.userName.value, "Loggar username");
 
 const postComment = async (postId) => {
   try {
@@ -159,10 +164,12 @@ const postComment = async (postId) => {
       body: JSON.stringify({
         post_id: postId,
         user_id: userId,
-        content: commentInput,
+        content: commentInput.value,
       }),
     });
     console.log("Kommentar postad:", data);
+    fetchWithId(postId);
+    commentInput.value = "";
   } catch (error) {
     console.error("Fel vid postning av kommentar:", error);
   }

@@ -14,10 +14,10 @@ export const getUsers = async (req, res) => {
 // CREATE
 
 export const createUser = async (req, res) => {
-  const { username, email, password, bio } = req.body;
+  const { username, fullname, email, password } = req.body;
   let sql =
-    "INSERT INTO users (username, email, password, bio) VALUES (?, ?, ?, ?)";
-  let params = [username, email, password, bio];
+    "INSERT INTO users ( username, fullname, email, password ) VALUES (?, ?, ?, ?)";
+  let params = [username, fullname, email, password];
   if (!username) {
     return res.status(400).json({
       success: false,
@@ -45,7 +45,7 @@ export const createUser = async (req, res) => {
       return res.status(201).json({
         success: true,
         error: "",
-        message: `You have added ${movieTitle}`,
+        message: `You have added ${username}`,
       });
     });
   } catch (error) {

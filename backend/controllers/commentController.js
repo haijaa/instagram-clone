@@ -22,7 +22,7 @@ export const getCommentOnPost = async (req, res) => {
 };
 
 export const postComment = async (req, res) => {
-  const { post_id, user_id, content } = req.params;
+  const { post_id, user_id, content } = req.body;
   let sql = `INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)`;
   try {
     const [rows, fields] = await connectionMySQL.query(sql, [

@@ -89,30 +89,12 @@ const wrongUser = ref(false);
 
 const errorMessage = "Wrong username or password";
 
-/* const doesUserExist = async () => {
-  const data = await $fetch(`/api/userDatabase`);
-  console.log(data);
-  const user = data.users.find(
-    (user) =>
-      user.username === sharedState.userName &&
-      user.password === sharedState.password
-  );
-  if (user) {
-    navigateTo("/landingpage");
-    sharedState.password = "";
-    storeValue("loginUsername", sharedState.userName);
-  } else {
-    console.log("Finns ingen sådan användare/fel lösenord");
-    wrongUser.value = true;
-  }
-}; */
 const doesUserExist = async () => {
   const data = await $fetch(`http://localhost:3001/users`);
   console.log(data);
   const user = data.find(
     (i) =>
-      i.username === sharedState.userName &&
-      i.password === sharedState.password
+      i.username === sharedState.userName && i.password === sharedState.password
   );
   if (user) {
     navigateTo("/landingpage");
@@ -123,5 +105,4 @@ const doesUserExist = async () => {
     wrongUser.value = true;
   }
 };
-
 </script>

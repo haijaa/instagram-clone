@@ -21,6 +21,7 @@
           <v-text-field
             label="Mobile Number or Email (optional)"
             variant="underlined"
+            v-model="userData.email"
           />
           <v-text-field
             type="text"
@@ -121,33 +122,35 @@ const successMessage =
 const errorMessage = "User exist already, try again.";
 
 const userData = reactive({
+  email: "",
   fullname: "",
   username: "",
   password: "",
 });
 
-const url = "/api/userDatabase";
+const url = "http://localhost:3001/users";
 
 const createUser = async () => {
-  const response = await $fetch("/api/userDatabase");
-  const existingUser = response.users.find(
-    (user) => user.username === userData.username
-  );
-
-  if (existingUser) {
-    console.log("Användare finns redan");
-    wrongUsername.value = true;
-    return;
-  }
-
   try {
+    const response = await $fetch("http://localhost:3001/users");
+    const existingUser = response.find(
+      (user) => user.username === userData.username
+    );
+
+    if (existingUser) {
+      console.log("Användare finns redan");
+      wrongUsername.value = true;
+      return;
+    }
+
     await $fetch(url, {
       method: "POST",
-      body: {
+      body: JSON.stringify({
+        email: userData.email,
         fullname: userData.fullname,
         username: userData.username,
         password: userData.password,
-      },
+      }),
     });
 
     console.log("Användare skapad.");
