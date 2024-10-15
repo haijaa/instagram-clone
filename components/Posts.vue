@@ -58,6 +58,13 @@
         />
       </div>
     </v-container>
+    <v-container
+      ><p>
+        {{ item.liked_by_users || "No likes on this post yet" }}
+        {{ item.like_count ? item.like_count - 1 + " others like this" : "" }}
+      </p></v-container
+    >
+
     <v-card-text>
       <strong
         @click="navigateTo(`/user/${item.post_username}`)"
@@ -124,7 +131,7 @@ const fetchPosts = async () => {
       allPosts.value = data.sort(
         (a, b) => new Date(b.created_at) - new Date(a.created_at)
       );
-      console.log(allPosts.value, "här är det.");
+      console.log(allPosts.value, "Titt här!");
     }
   } catch (error) {
     console.error("Error fetching posts:", error);
@@ -138,7 +145,6 @@ const fetchWithId = async (postId) => {
     );
     if (data) {
       specificPost.value = data;
-      console.log(specificPost.value, "ID-förfrågan");
     }
   } catch (error) {
     console.error("Error fetching posts:", error);
@@ -151,7 +157,6 @@ const postComment = async (postId) => {
   try {
     const userData = await $fetch("http://localhost:3001/users");
     const user = userData.find((i) => i.username === sharedState.userName);
-    console.log(user);
     if (!user) {
       throw new Error("User not found");
     }
@@ -186,10 +191,8 @@ const toggleComments = (postId) => {
 const savePost = (postId) => {
   if (!savedPost[postId]) {
     savedPost[postId] = true;
-    console.log(savedPost);
   } else {
     savedPost[postId] = false;
-    console.log(savedPost);
   }
 };
 
