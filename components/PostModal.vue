@@ -25,6 +25,11 @@
               <v-icon icon="mdi-image-multiple" size="55" />
               <v-icon icon="mdi-play-box-outline" size="55" />
             </v-row>
+            <img
+              :src="post.url"
+              v-if="post.url !== ''"
+              style="width: 250px; height: 250px"
+            />
             <input
               type="text"
               style="background-color: grey"

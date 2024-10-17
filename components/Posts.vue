@@ -114,7 +114,7 @@
 </template>
 
 <script setup>
-import { isUserLoggedIn } from "../composables/Functions";
+import { isUserLoggedIn, getValue } from "../composables/Functions";
 const sharedState = inject("sharedState");
 const allPosts = ref([]);
 const specificPost = ref([]);
@@ -123,6 +123,7 @@ const savedPost = reactive([]);
 const likedPosts = reactive({});
 const commentInput = ref("");
 const logInPrompt = ref(false);
+getValue("loginUsername");
 
 const fetchPosts = async () => {
   try {
@@ -131,8 +132,8 @@ const fetchPosts = async () => {
       allPosts.value = data.sort(
         (a, b) => new Date(b.created_at) - new Date(a.created_at)
       );
-      console.log(allPosts.value, "Titt här!");
     }
+    console.log(allPosts.value, "Titt här!");
   } catch (error) {
     console.error("Error fetching posts:", error);
   }
@@ -172,8 +173,7 @@ const postComment = async (postId) => {
         content: commentInput.value,
       }),
     });
-    console.log("Kommentar postad:", data);
-    fetchWithId(postId);
+    fetchPosts();
     commentInput.value = "";
   } catch (error) {
     console.error("Fel vid postning av kommentar:", error);
