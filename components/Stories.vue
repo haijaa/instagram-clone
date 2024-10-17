@@ -53,6 +53,7 @@
 
 <script setup>
 import { usePost } from "../composables/postData";
+import { nextStory } from "../composables/Functions";
 
 const props = defineProps({
   storyPost: Object,

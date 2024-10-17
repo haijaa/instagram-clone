@@ -99,7 +99,7 @@ const doesUserExist = async () => {
   if (user) {
     navigateTo("/landingpage");
     sharedState.password = "";
-    storeValue("loginUsername", sharedState.userName);
+    storeValue("loginUsername", sharedState.userName.global);
   } else {
     console.log("Finns ingen sådan användare/fel lösenord");
     wrongUser.value = true;

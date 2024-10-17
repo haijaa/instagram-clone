@@ -117,3 +117,7 @@ export const changeUser = async (req, res) => {
     });
   }
 };
+
+// GET - Single user.
+
+export const getTotalUserInformation = async (req, res) => {};

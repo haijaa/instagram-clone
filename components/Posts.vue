@@ -125,6 +125,7 @@ const commentInput = ref("");
 const commentsToggled = ref(false);
 const logInPrompt = ref(false);
 getValue("loginUsername");
+console.log(sharedState.userName, "här");
 
 const fetchPosts = async () => {
   try {
