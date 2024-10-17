@@ -37,6 +37,7 @@
               class="mt-5"
               v-model="post.url"
             />
+
             <input
               type="text"
               style="background-color: grey"

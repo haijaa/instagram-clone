@@ -93,7 +93,7 @@
         <p class="thinSmall">{{ comment.comment_content }}</p>
       </div>
       <v-divider />
-      <div class="d-flex justify-space-between">
+      <div class="d-flex justify-space-between" v-if="commentsToggled">
         <input
           type="text"
           placeholder="Add comment"
@@ -122,6 +122,7 @@ const activePostId = ref(null);
 const savedPost = reactive([]);
 const likedPosts = reactive({});
 const commentInput = ref("");
+const commentsToggled = ref(false);
 const logInPrompt = ref(false);
 getValue("loginUsername");
 
@@ -183,8 +184,10 @@ const postComment = async (postId) => {
 const toggleComments = (postId) => {
   if (activePostId.value === postId) {
     activePostId.value = null;
+    commentsToggled.value = false;
   } else {
     activePostId.value = postId;
+    commentsToggled.value = true;
   }
 };
 
