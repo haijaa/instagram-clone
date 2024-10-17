@@ -14,28 +14,24 @@
             <p style="font-weight: 300; color: red" class="hover">Unfollow</p>
           </div>
           <v-divider />
-          <div class="mt-1 d-flex align-center justify-center">
-            <p class="hover">Add to favorites</p>
-          </div>
           <v-divider />
-          <div class="mt-1 d-flex align-center justify-center">
-            <p class="hover">Go to post</p>
+          <div
+            class="mt-1 d-flex align-center justify-center"
+            v-for="item in sections.allNames"
+          >
+            <p class="hover">
+              {{ item.name }}
+              <v-divider />
+            </p>
           </div>
           <v-divider />
           <div class="mt-1 d-flex align-center justify-center">
             <p class="hover">
               Share
-              <ShareContent />
+              <ShareContent>Share</ShareContent>
             </p>
           </div>
           <v-divider />
-          <div class="mt-1 d-flex align-center justify-center">
-            <p class="hover">Copy link</p>
-          </div>
-          <v-divider />
-          <div class="mt-1 d-flex align-center justify-center">
-            <p class="hover">Embed</p>
-          </div>
           <v-divider />
           <div class="mt-1 d-flex align-center justify-center">
             <p @click="navigateTo(`/user/${userInformation}`)" class="hover">
@@ -55,6 +51,24 @@
 
 <script setup>
 const showShare = ref(false);
+
+const sections = {
+  allNames: [
+    {
+      name: "Add to favorites",
+    },
+    {
+      name: "Go to post",
+    },
+    {
+      name: "Copy link",
+    },
+    {
+      name: "Embed",
+    },
+  ],
+};
+
 defineProps({
   userInformation: String,
 });

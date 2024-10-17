@@ -68,3 +68,14 @@ export const getPostsWithCommentsOnId = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+export const deletePost = async (req, res) => {
+  const { post_id } = req.body;
+  let sql = "DELETE FROM posts WHERE posts.id = ?";
+  try {
+    const [rows, fields] = await connectionMySQL.query(sql, [post_id]);
+    res.json(rows);
+  } catch (error) {
+    console.log("Kunde inte ta bort: ", error);
+  }
+};
